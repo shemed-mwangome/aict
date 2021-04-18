@@ -1,0 +1,320 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  height: 100vh;
+  width: 100vw;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  font-weight: 300;
+  line-height: 1;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Basic Style*/
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  overflow: auto;
+  padding: 0 40px;
+}
+
+.error {
+  font-size: 0.8em;
+  color: red;
+}
+
+main.main-content {
+  height: calc(100vh - 120px);
+}
+
+/* Header */
+header {
+  background-color: #26A69A;
+  height: 120px;
+}
+
+header .flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+  padding: 0.5em 0;
+}
+
+.container .col-left {
+  width: 20%;
+  text-align: center;
+}
+.container .col-left img {
+  width: 100px;
+  height: 100px;
+}
+
+.container .col-right {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+.container .col-right .main-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.container .col-right .sub-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* Login area*/
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  width: 350px;
+}
+
+.login form {
+  max-width: 350px;
+  width: 100%;
+  padding: 1.4rem;
+  box-shadow: 0 2px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.login-form .input-group {
+  margin: 0.8em 0;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.login-form input:focus {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.login-form input[type=submit] {
+  background-color: #26A69A;
+  border: none;
+  outline: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+}
+.login-form input[type=submit]:hover {
+  background-color: #00897B;
+}
+
+/* Dashboard */
+.main-content {
+  display: grid;
+  grid-template-columns: 0.4fr 2fr;
+  height: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 100%;
+  height: 100%;
+  background-color: #253544;
+  position: relative;
+}
+
+.sidebar .welcome-note {
+  color: #ffffff;
+  font-size: 1.2em;
+  padding-left: 1rem;
+  line-height: 2;
+  user-select: none;
+}
+
+.sidebar .pager {
+  width: 50px;
+  border: 1px solid #2d3c43;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+}
+.navbar .current {
+  background-color: #1f2c39;
+}
+.navbar a {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  line-height: 1.8;
+  text-align: left;
+  font-size: 1em;
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: 0.2s;
+}
+.navbar a:hover {
+  padding-left: 1.4rem;
+}
+.navbar a i {
+  padding-right: 8px;
+}
+
+/* Main Area */
+.main-area {
+  padding: 2rem 2rem;
+}
+
+.input-form {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 0.4fr;
+  grid-template-rows: minmax(400px, auto);
+  gap: 2rem;
+}
+.input-form .tab {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.input-form .input-group {
+  margin: 0 0 0.5rem 0;
+}
+.input-form input,
+.input-form select,
+.input-form textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.input-form input:focus,
+.input-form select:focus,
+.input-form textarea:focus {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.input-form select {
+  background-color: transparent;
+}
+.input-form textarea {
+  resize: none;
+}
+.input-form button[type=submit] {
+  background-color: #26A69A;
+  border: none;
+  outline: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.7rem 0.8rem;
+}
+.input-form button[type=submit] i {
+  color: #fff;
+}
+.input-form button[type=submit]:hover {
+  background-color: #00897B;
+}
+.input-form .submit-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.input-form .submit-section .submit-btn {
+  width: 150px;
+}
+.input-form .photo-details input[type=file] {
+  display: none;
+}
+.input-form .photo-details .photo-area {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 150px;
+  height: 150px;
+}
+.input-form .photo-details .photo-area img {
+  height: 100%;
+  width: 100%;
+}
+.input-form .photo-details button {
+  display: block;
+  width: 150px;
+  padding: 0.7rem 0.8rem;
+  cursor: pointer;
+  color: #ffffff;
+  margin-top: 1rem;
+  text-align: center;
+  background-color: #26A69A;
+  outline: none;
+  border: none;
+  font-size: 1em;
+}
+.input-form .photo-details button:hover {
+  background-color: #00897B;
+}
+
+/* Family Details */
+.family-form {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 0.3fr;
+  grid-template-rows: minmax(auto, auto);
+  gap: 2rem;
+}
+.family-form table.children-details {
+  grid-column: 1/3;
+  border: 1px sold rgba(255, 255, 255, 0.1);
+}
+.family-form table.children-details,
+.family-form td,
+.family-form th {
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+.family-form td,
+.family-form th {
+  padding: 10px;
+  text-align: left;
+}
+.family-form th {
+  background-color: #26A69A;
+  color: #ffffff;
+}
+.family-form tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.family-form tr:hover {
+  background-color: #ddd;
+}
+
+/*# sourceMappingURL=main.css.map */
