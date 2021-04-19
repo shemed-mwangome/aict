@@ -1,4 +1,4 @@
-<?php include "header.php"; ?>
+<?php include "templates/header.php"; ?>
 <main class="main-content">
     <div class="sidebar">
         <p class="welcome-note">Welcome, <span>Seleman</span></p>
@@ -18,7 +18,7 @@
                     <a href="religious_details.php"><i class="las la-church la-lg"></i> Taarifa za Kiimani</a>
                 </li>
                 <li>
-                    <a href="../index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
+                    <a href="index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
                 </li>
             </ul>
         </nav>
@@ -228,4 +228,4 @@
                     </button>
                 </div>
             </div>
-            <?php include "footer.php"; ?>
+            <?php include "templates/footer.php"; ?>

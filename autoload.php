@@ -1,5 +1,6 @@
 <?php
 
 spl_autoload_register(function ($className) {
-   require "src/" .  $className . ".php";
+    // var_dump($className);
+   require  $className . ".php";
 });
