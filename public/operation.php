@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require "./autoload.php";
+require "../autoload.php";
 
 $errors = array();
 $userdata = array();
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (isset($_FILES["user_photo"])) {
             //Process images
-            $target_dir = "images/uploads/";
+            $target_dir = $_SERVER["DOCUMENT_ROOT"] . "/uploads/";
             $filename = "";
             $is_upload = false;
             $uploaded_filename = $_FILES["user_photo"]["name"];
@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $id = $user->registerUser($userdata);
             $user_registered = false;
             // Check if user is inserted
-            if($id) {
+            if ($id) {
 
                 // Insert employment details
                 $user->registerEmployement($userdata, $id);
@@ -149,14 +149,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $user_registered = true;
 
-                if($user_registered){
+                if ($user_registered) {
                     header("Location: family_details.php");
                 }
             }
-
-
-
-
         }
     }
 }

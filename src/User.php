@@ -1,6 +1,5 @@
 <?php
 
-namespace 
 class User extends Database
 {
     private $conn;
@@ -61,6 +60,4 @@ class User extends Database
         ];
         $stmt->execute($data);
     }
-
-    
 }

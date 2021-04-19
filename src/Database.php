@@ -1,22 +1,23 @@
 <?php
 
-require("../config/config.php");
-
-define("HOST", $config["mysql"]["host"]);
-define("USERNAME", $config["mysql"]["username"]);
-define("PASSWORD", $config["mysql"]["password"]);
-define("DATABASE", $config["mysql"]["database"]);
-
+require_once("config.php");
 class Database
 {
 
-    
+    private $host;
+    private $username;
+    private $password;
+    private $database;
+    private $pdo;
 
-    private $host = HOST;
-    private $username = USERNAME;
-    private $password = PASSWORD;
-    private $database = DATABASE;
-    private $pdo = NULL;
+    function __construct()
+    {
+        global $config;
+        $this->host  = $config["mysql"]["host"];
+        $this->username = $config["mysql"]["username"];
+        $this->password = $config["mysql"]["password"];
+        $this->database = $config["mysql"]["database"];
+    }
 
     protected function connect()
     {

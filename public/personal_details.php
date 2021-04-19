@@ -18,13 +18,13 @@
                     <a href="religious_details.php"><i class="las la-church la-lg"></i> Taarifa za Kiimani</a>
                 </li>
                 <li>
-                    <a href="index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
+                    <a href="../index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
                 </li>
             </ul>
         </nav>
     </div>
     <div class="main-area personal__page" data-page__title="personal" id="personal__page">
-        <form action="Operation.php" class="input-form" method="POST" id="personal__info__form" enctype="multipart/form-data">
+        <form action="operation.php" class="input-form" method="POST" id="personal__info__form" enctype="multipart/form-data">
             <div class="tab personal-info">
                 <div class="input-group">
                     <input type="text" name="fullname" class="form-control" id="fullname" placeholder="Jina Kamili" value='<?php if (isset($_SESSION["userdata"]["fullname"])) echo $_SESSION["userdata"]["fullname"]; ?>'>

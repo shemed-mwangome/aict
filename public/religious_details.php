@@ -18,7 +18,7 @@
                     <a href="religious_details.php"><i class="las la-church la-lg"></i> Taarifa za Kiimani</a>
                 </li>
                 <li>
-                    <a href="index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
+                    <a href="../index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
                 </li>
             </ul>
         </nav>
