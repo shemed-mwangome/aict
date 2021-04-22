@@ -2,6 +2,7 @@
 
 namespace App\User;
 
+use lastInsertId;
 
 class User
 {
@@ -47,7 +48,8 @@ class User
         );
 
         $this->db->query($sql);
-        return $this->db->execute($values);
+        $this->db->execute($values);
+        return $this->db->lastInsertId();
     }
 
     public function registerEmployement($id, $data)
