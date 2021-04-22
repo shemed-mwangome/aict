@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (isset($_FILES["user_photo"])) {
             //Process images
-            $target_dir = $_SERVER["DOCUMENT_ROOT"] . "/uploads/";
+            $target_dir = __DIR__ . "/uploads/";
             $filename = "";
             $is_upload = false;
             $uploaded_filename = $_FILES["user_photo"]["name"];
