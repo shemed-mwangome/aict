@@ -1,15 +1,17 @@
 <?php
 
-class User extends Database
+namespace App\User;
+
+
+
+class User
 {
     private $conn;
 
     public function __construct()
     {
-        $db = new Database();
+        $db = new \App\DataBase();
         $this->conn = $db->connect();
-
-        return $this->conn;
     }
 
     public function registerUser($userdata)

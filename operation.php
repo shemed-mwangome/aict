@@ -1,7 +1,8 @@
 <?php
+require realpath(__DIR__ . "/vendor/autoload.php");
 
 session_start();
-require "autoload.php";
+
 
 $errors = array();
 $userdata = array();
@@ -132,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Implement saving to database;
 
-            $user = new User();
+            $user = new App\User\User();
             $id = $user->registerUser($userdata);
             $user_registered = false;
             // Check if user is inserted
