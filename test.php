@@ -6,6 +6,6 @@ require __DIR__ . "/vendor/autoload.php";
 
 $user = new User();
 
-$l = $user->getUsers();
+$l = $user->getUser("0768939393");
 
 print_r($l);

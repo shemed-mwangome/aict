@@ -59,8 +59,8 @@ class DataBase
         $this->statement->bindValue($parameter, $value, $type);
     }
 
-    public function execute(){
-        return $this->statement->execute();
+    public function execute($data = null){
+        return $this->statement->execute($data);
     }
 
     public function resultSet(){

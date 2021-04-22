@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (isset($_FILES["user_photo"])) {
             //Process images
-            $target_dir = __DIR__ . "/uploads/";
+            $target_dir = "uploads/";
             $filename = "";
             $is_upload = false;
             $uploaded_filename = $_FILES["user_photo"]["name"];
@@ -134,26 +134,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Implement saving to database;
 
             $user = new App\User\User();
-            $user->getUsers();
-            // $id = $user->registerUser($userdata);
-            // $user_registered = false;
+
+            // register User
+
+            $id = $user->registerUser($userdata);
+
+
+            $user_registered = false;
+
+            echo $id;
+
             // Check if user is inserted
             // if ($id) {
-
-            //     // Insert employment details
-            //     $user->registerEmployement($userdata, $id);
-
-            //     // Insert Residence data
-            //     $user->registerResidence($userdata, $id);
+            //     echo "passed";
 
             //     // Insert spouse
-            //     $user->registerSpouse($userdata, $id);
+            //     $user->registerMarriage($userdata, $id);
 
-            //     $user_registered = true;
+                // Insert employment details
+                // $user->registerEmployement($userdata, $id);
 
-            //     if ($user_registered) {
-            //         header("Location: family_details.php");
-            //     }
+                // // Insert Residence data
+                // $user->registerResidence($userdata, $id);
+
+
+
+                // $user_registered = true;
+
+                // if ($user_registered) {
+                //     header("Location: family_details.php");
+                // }
             // }
         }
     }
