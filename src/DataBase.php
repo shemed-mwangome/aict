@@ -3,17 +3,17 @@
 namespace App;
 
 use PDO;
-use Exception;
+use PDOException;
 
 
 require "config.php";
 class DataBase
 {
 
-    private $host;
-    private $username;
-    private $password  ;
-    private $database  ;
+    private $host = DB_HOST;
+    private $username = DB_USER;
+    private $password = DB_PASSWORD;
+    private $database = DB_NAME;
 
     private $dbHandler;
     private $statement;
@@ -21,25 +21,59 @@ class DataBase
 
     public function __construct()
     {
-        $this->host = DB_HOST;
-        $this->username = DB_USER;
-        $this->password = DB_PASSWORD;
-        $this->database = DB_NAME;
-    }
-
-    public function connect()
-    {
         $conn = "mysql:host=$this->host;dbname=$this->database;charset=utf8";
-        $options = [
+        $options = array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        ];
+        );
 
         try {
             $this->dbHandler = new PDO($conn, $this->username, $this->password, $options);
-        } catch (Exception $e) {
+        } catch (PDOException $e) {
             $this->error = $e->getMessage();
             echo $this->error;
         }
-        return $this->dbHandler;
+    }
+
+    // Prepare statement
+    public function query($sql)
+    {
+        $this->statement = $this->dbHandler->prepare($sql);
+    }
+
+    // Bind data
+    public function bind($parameter, $value, $type = null)
+    {
+        switch (is_null($type)) {
+            case is_int($value):
+                $type = PDO::PARAM_INT;
+                break;
+            case is_bool($value):
+                $type = PDO::PARAM_BOOL;
+                break;
+            case is_null($value):
+                $type = PDO::PARAM_NULL;
+                break;
+            default:
+                $type = PDO::PARAM_STR;
+        }
+        $this->statement->bindValue($parameter, $value, $type);
+    }
+
+    public function execute(){
+        return $this->statement->execute();
+    }
+
+    public function resultSet(){
+        $this->execute();
+        return $this->statement->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function single(){
+        $this->execute();
+        return $this->statement->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function rowCount(){
+        return $this->statement->rowCount();
     }
 }

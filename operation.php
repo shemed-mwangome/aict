@@ -134,26 +134,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Implement saving to database;
 
             $user = new App\User\User();
-            $id = $user->registerUser($userdata);
-            $user_registered = false;
+            $user->getUsers();
+            // $id = $user->registerUser($userdata);
+            // $user_registered = false;
             // Check if user is inserted
-            if ($id) {
+            // if ($id) {
 
-                // Insert employment details
-                $user->registerEmployement($userdata, $id);
+            //     // Insert employment details
+            //     $user->registerEmployement($userdata, $id);
 
-                // Insert Residence data
-                $user->registerResidence($userdata, $id);
+            //     // Insert Residence data
+            //     $user->registerResidence($userdata, $id);
 
-                // Insert spouse
-                $user->registerSpouse($userdata, $id);
+            //     // Insert spouse
+            //     $user->registerSpouse($userdata, $id);
 
-                $user_registered = true;
+            //     $user_registered = true;
 
-                if ($user_registered) {
-                    header("Location: family_details.php");
-                }
-            }
+            //     if ($user_registered) {
+            //         header("Location: family_details.php");
+            //     }
+            // }
         }
     }
 }

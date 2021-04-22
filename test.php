@@ -1,16 +1,11 @@
 <?php
 
-require "src/config.php";
+use App\User\User;
 
-$conn = "mysql:host=". DB_HOST. ";dbname=" . DB_NAME .";charset=utf8";
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-];
+require __DIR__ . "/vendor/autoload.php";
 
-try {
-    $db = new PDO($conn, DB_USER, DB_PASSWORD, $options);
-    print_r($db);
-} catch (Exception $e) {
-    $error = $e->getMessage();
-    echo $error;
-}
+$user = new User();
+
+$l = $user->getUsers();
+
+print_r($l);

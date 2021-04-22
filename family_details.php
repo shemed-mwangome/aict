@@ -27,6 +27,9 @@
         <form action="#" class="input-form family-form">
             <div class="tab family-info">
                 <div class="input-group">
+                    <input type="text" placeholder="Namba ya simu ya Mzazi" name="phone_no">
+                </div>
+                <div class="input-group">
                     <input type="text" placeholder="Jina la Mtoto" name="fullname">
                 </div>
                 <div class="input-group">
