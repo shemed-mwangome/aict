@@ -1,11 +1,15 @@
 <?php
 
-use App\User\User;
+// use App\User\User;
 
-require __DIR__ . "/vendor/autoload.php";
+// require __DIR__ . "/vendor/autoload.php";
 
-$user = new User();
+// $user = new User();
 
-$l = $user->getUser("0768939393");
+// $l = $user->getUser("0768939393");
 
-print_r($l);
+// print_r($l);
+
+if(1 == true){
+    echo "Woo";
+}

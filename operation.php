@@ -5,7 +5,7 @@ session_start();
 
 
 $errors = array();
-$userdata = array();
+global $userdata;
 $fullname = $gender = $dob = $marital_status = $spouse_name = $date_marriage = $parent_name = $employer = $skills = $address = $phone_no = $email = $location = $street = $house_no = $user_photo = "";
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -100,16 +100,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["userdata"] = $userdata;
         header("Location: personal_details.php");
     } else {
-        // Processing inputs
 
+        //Process images
         if (isset($_FILES["user_photo"])) {
-            //Process images
             $target_dir = "uploads/";
             $filename = "";
             $is_upload = false;
             $uploaded_filename = $_FILES["user_photo"]["name"];
             $tmp_name = $_FILES["user_photo"]["tmp_name"];
             $extension = strtolower(pathinfo($uploaded_filename, PATHINFO_EXTENSION));
+            $filename = $target_dir . date('Ymd_his') . "." . $extension;
+            $userdata["photo_path"] = $filename;
 
             // Getting mime
             $properties = getimagesize($_FILES["user_photo"]["tmp_name"]);
@@ -125,44 +126,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             if ($is_upload) {
-                $filename = $target_dir . date('Ymd_his') . "." . $extension;
                 // Move file to location
                 move_uploaded_file($tmp_name, $filename);
-                $userdata["photo_path"] = $filename;
-            }
-
-            // Implement saving to database;
-
-            $user = new App\User\User();
-
-            // register User
-            $id = $user->registerUser($userdata);
-
-            $user_registered = false;
-
-
-            // Check if user is inserted
-            if ($id) {
-                echo "passed";
-
-                // Insert spouse
-                $user->registerMarriage($userdata, $id);
-
-                // Insert employment details
-                $user->registerEmployement($userdata, $id);
-
-                // Insert Residence data
-                $user->registerResidence($userdata, $id);
-
-
-
-                $user_registered = true;
-
-                if ($user_registered) {
-                    header("Location: family_details.php");
-                }
             }
         }
+
+        registerUser($userdata);
     }
 }
 
@@ -176,6 +145,28 @@ function clean_data($data)
     return $data;
 }
 
-function uploadImage()
+
+
+function registerUser($userdata)
 {
+    $user = new App\User\User();
+
+    // register User
+    $user_registered = $user->registerUser($userdata);
+
+    if ($user_registered) {
+        $user_id = $user->lastId();
+
+        // register spouse
+        $user->registerMarriage($user_id, $userdata);
+
+        // Register residence
+        $user->registerResidence($user_id, $userdata);
+
+        // Register employment
+        $user->registerEmployement($user_id, $userdata);
+
+        header("Location: family_details.php");
+    }
 }
+

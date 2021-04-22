@@ -48,10 +48,23 @@ class User
         );
 
         $this->db->query($sql);
-        $this->db->execute($values);
-        return $this->db->lastInsertId();
+        return $this->db->execute($values);
     }
 
+    public function registerMarriage($id, $data)
+    {
+        $sql = "INSERT INTO spouse (
+            particulars_id, fullname, date_of_marriage) VALUES (?,?,?)";
+
+        $values = array(
+            $id,
+            $data["spouse_name"],
+            $data["date_marriage"]
+        );
+
+        $this->db->query($sql);
+        return $this->db->execute($values);
+    }
     public function registerEmployement($id, $data)
     {
         $sql = "INSERT INTO employment (
@@ -81,18 +94,9 @@ class User
         $this->db->query($sql);
         return $this->db->execute($values);
     }
-    public function registerMarriage($id, $data)
+
+    public function lastId()
     {
-        $sql = "INSERT INTO spouse (
-            particulars_id, fullname, date_of_marriage) VALUES (?,?,?)";
-
-        $values = array(
-            $id,
-            $data["fullname"],
-            $data["date_marriage"]
-        );
-
-        $this->db->query($sql);
-        return $this->db->execute($values);
+        return $this->db->lastInsertId();
     }
 }
