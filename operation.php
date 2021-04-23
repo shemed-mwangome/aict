@@ -135,11 +135,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["personal_submit"])) {
     }
 }
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["action"] == "search_user") {
+
     $phone_no = clean_data($_POST["phone_no"]);
+
     getUser($phone_no);
 }
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["action"] == "fetch_children") {
+
+    $phone_no = clean_data($_POST["phone_no"]);
+
+    $user = new \App\User\User();
+    getChildren($phone_no);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && isset($_POST["family_submit"])) {
+    echo "saved";
+} 
+
+
+
+
 
 function clean_data($data)
 {
@@ -150,8 +168,6 @@ function clean_data($data)
     $data = ($data);
     return $data;
 }
-
-
 
 function registerUser($userdata)
 {
@@ -176,9 +192,31 @@ function registerUser($userdata)
     }
 }
 
-function getUser($phone_no){
+function getUser($phone_no)
+{
     $user = new \App\User\User();
 
     $row = $user->getUser($phone_no);
     echo json_encode($row);
+}
+
+function getChildren($phone_no)
+{
+    $user = new \App\User\User();
+
+    // Fetch user
+    $row = $user->getUser($phone_no);
+
+    // Extract id
+    $id = $row->id;
+
+    // Fetch children
+    $row = $user->getChildren($id);
+
+    echo json_encode($row);
+}
+
+function registerChildren($children)
+{
+    echo $children;
 }

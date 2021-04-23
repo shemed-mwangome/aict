@@ -319,5 +319,8 @@ header .flex {
 .family-form tr:hover {
   background-color: #ddd;
 }
+.family-form tr#no-data > td h1 {
+  text-align: center;
+}
 
 /*# sourceMappingURL=main.css.map */

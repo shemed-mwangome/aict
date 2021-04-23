@@ -24,13 +24,13 @@
         </nav>
     </div>
     <div class="main-area" data-page__title="family">
-        <form action="#" class="input-form family-form" method="POST">
+        <form action="operation.php" class="input-form family-form" method="POST">
             <div class="tab family-info">
                 <div class="input-group">
                     <input type="text" placeholder="Namba ya simu ya Mzazi" name="phone_no" id="phone_no">
                 </div>
                 <div class="input-group">
-                    <input type="text" placeholder="Jina la Mzazi" name="fullname" readonly id="fullname">
+                    <input type="text" placeholder="Jina la Mzazi" name="parent_name" readonly id="parent_name">
                 </div>
                 <div class="input-group">
                     <input type="text" placeholder="Jina la Mtoto" name="fullname">
@@ -38,8 +38,8 @@
                 <div class="input-group">
                     <select name="gender" id="gender">
                         <option value="" selected hidden disabled>Jinsi</option>
-                        <option value="m">Me</option>
-                        <option value="f">Ke</option>
+                        <option value="me">me</option>
+                        <option value="fe">ke</option>
                     </select>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <button type="submit" class="submit-btn" name="submit" id="submit-btn">
+                    <button type="submit" class="submit-btn" name="family_submit" id="submit-btn">
                         <i class="las la-save la-lg"></i> Hifadhi
                     </button>
                 </div>
@@ -78,31 +78,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John Lenin</td>
-                        <td>10</td>
-                        <td>Me</td>
-                        <td>Ndio</td>
+                    <tr id="no-data">
+                        <td colspan="4">
+                            <h1>No data</h1>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>Sarah palin</td>
-                        <td>12</td>
-                        <td>Ke</td>
-                        <td>hapana</td>
-                    </tr>
-                    <tr>
-                        <td>Josh Hamelton</td>
-                        <td>15</td>
-                        <td>Me</td>
-                        <td>Ndio</td>
-                    </tr>
-                    <tr>
-                        <td>Wendy Anderson</td>
-                        <td>8</td>
-                        <td>Ke</td>
-                        <td>Ndio</td>
-                    </tr>
-
                 </tbody>
             </table>
 

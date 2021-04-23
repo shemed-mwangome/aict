@@ -63,26 +63,55 @@ const personalPage = () => {
 
 const familyPage = () => {
     const phone_no = document.querySelector("#phone_no");
+    const submitBtn = document.querySelector("#submit-btn")
+
 
     const searchUser = async (e) => {
         let num = e.target.value
 
-        const response = await fetch("../operation.php", {
+        let url = "../operation.php"
+        let data = new URLSearchParams();
+        data.append("phone_no", num)
+        data.append("action", "search_user")
+        let options = {
             method: "POST",
-            body: new URLSearchParams("phone_no=" + num)
+            body: data
+        }
 
-        })
-        const result = await response.json();
+        let response = await fetch(url, options)
 
-        (result !== false) ? document.querySelector("#fullname").value = result.fullname : document.querySelector("#fullname").value = "";
+        let result = await response.json();
 
+        (result !== false) ? document.querySelector("#parent_name").value = result.fullname : document.querySelector("#parent_name").value = "";
+    }
 
+    const fetchChildren = async (e) => {
+        let num = e.target.value
 
+        let url = "../operation.php"
+        let data = new URLSearchParams();
+        data.append("action", "fetch_children")
+        data.append("phone_no", num)
+        let options = {
+            method: "POST",
+            body: data
+        }
+
+        let response = await fetch(url, options)
+        let result = await response.json();
+
+        console.log(result);
+    }
+
+    const registerChildren = async (e) => {
+        e.preventDefault();
+        
 
     }
 
-
     phone_no.addEventListener("input", searchUser, false);
+    phone_no.addEventListener("blur", fetchChildren, false);
+    submitBtn.addEventListener("click", registerChildren, false);
 }
 
 

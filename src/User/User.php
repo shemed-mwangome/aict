@@ -99,4 +99,16 @@ class User
     {
         return $this->db->lastInsertId();
     }
+
+    public function rowCount(){
+        return $this->db->rowCount();
+    }
+
+    public function getChildren($parent_id){
+
+        $sql = "SELECT * FROM children WHERE particulars_id = :particulars_id";
+        $this->db->query($sql);
+        $this->db->bind(':particulars_id', $parent_id);
+        return $this->db->resultSet();
+    }
 }

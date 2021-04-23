@@ -301,7 +301,7 @@ header .flex {
 
     .input-group {
         #fullname {
-           background-color: #f2f2f2;
+            background-color: #f2f2f2;
         }
     }
 
@@ -335,5 +335,13 @@ header .flex {
     tr:hover {
         background-color: #ddd;
     }
+
+    tr#no-data > td {
+        h1 {
+            text-align: center;
+        }
+    }
+
+    
 
 }
