@@ -64,6 +64,7 @@ const personalPage = () => {
 const familyPage = () => {
     const phone_no = document.querySelector("#phone_no");
     const submitBtn = document.querySelector("#submit-btn")
+    const parent_id = document.querySelector("#parent_id");
 
 
     const searchUser = async (e) => {
@@ -80,10 +81,19 @@ const familyPage = () => {
 
         try {
             let response = await fetch(url, options)
+
             let result = await response.json();
+
             (result !== false) ? document.querySelector("#parent_name").value = result.fullname : document.querySelector("#parent_name").value = "";
+
+            (result !== false) ? document.querySelector("#parent_id").value = result.id : document.querySelector("#parent_id").value = "";
+
+            (result !== false) ? document.querySelector("#parent_photo").src = result.photo : document.querySelector("#parent_id").value = "";
+
         }
         catch (err) {
+            console.log(err);
+
             console.log("No such user");
         }
 
@@ -91,6 +101,7 @@ const familyPage = () => {
 
     const fetchChildren = async (e) => {
         let num = e.target.value
+        let output = "";
 
         let url = "../operation.php"
         let data = new URLSearchParams();
@@ -103,33 +114,52 @@ const familyPage = () => {
         try {
             let response = await fetch(url, options)
             let result = await response.json();
-            console.log(result);
+
+            if (result.length > 0) {
+                result.forEach(item => {
+                    output += `
+                <tr>
+                    <td>${item.fullname}</td>
+                    <td>${item.age}</td>
+                    <td>${item.gender}</td>
+                    <td>${item.is_staying_home}</td>
+                </tr>
+            `
+                });
+
+
+            }
+            else {
+                output += `
+                    <tr id="no-data">
+                            <td colspan="4">
+                                <h1>Hakuna Taarifa</h1>
+                            </td>
+                    </tr>`;
+            }
+
+            document.querySelector("#display-data").innerHTML = output;
         }
         catch (err) {
-            console.log("Error to fetch");
+            output += `
+                    <tr id="no-data">
+                        <td colspan="4">
+                            <h1>Hakuna Taarifa</h1>
+                        </td>
+                    </tr>`;
+            document.querySelector("#display-data").innerHTML = output;
         }
 
 
     }
 
     const registerChildren = async (e) => {
-        let url = "../operation.php"
-        let options = {
-            method: "POST",
-            body: data
-        }
-
-        try {
-            let response = await fetch(url, options)
-            let result = await response.json()
-            console.log(result)
-        } catch (error) {
-            console.log(error)
-        }
+        e.preventDefault();
+        alert("saved");
     }
 
     phone_no.addEventListener("keyup", searchUser, false);
-    phone_no.addEventListener("blur", fetchChildren, false);
+    phone_no.addEventListener("input", fetchChildren, false);
     submitBtn.addEventListener("click", registerChildren, false);
 }
 

@@ -143,17 +143,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["a
 }
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["action"] == "fetch_children") {
+if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST["action"] == "fetch_children")) {
 
     $phone_no = clean_data($_POST["phone_no"]);
 
     $user = new \App\User\User();
     getChildren($phone_no);
 }
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && isset($_POST["family_submit"])) {
-    echo "saved";
-} 
 
 
 
@@ -216,7 +212,3 @@ function getChildren($phone_no)
     echo json_encode($row);
 }
 
-function registerChildren($children)
-{
-    echo $children;
-}

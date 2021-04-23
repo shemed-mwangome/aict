@@ -291,7 +291,7 @@ header .flex {
   grid-template-rows: minmax(auto, auto);
   gap: 2rem;
 }
-.family-form .input-group #fullname {
+.family-form .input-group #parent_name {
   background-color: #f2f2f2;
 }
 .family-form table.children-details {
