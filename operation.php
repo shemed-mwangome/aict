@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     die();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["personal_submit"])) {
 
     if (empty($_POST["fullname"])) {
         $errors["fullnameErr"] = "Jina kamili linahitajika";
@@ -135,6 +135,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
+    $phone_no = clean_data($_POST["phone_no"]);
+    getUser($phone_no);
+}
+
 function clean_data($data)
 {
 
@@ -170,3 +176,9 @@ function registerUser($userdata)
     }
 }
 
+function getUser($phone_no){
+    $user = new \App\User\User();
+
+    $row = $user->getUser($phone_no);
+    echo json_encode($row);
+}

@@ -23,11 +23,14 @@
             </ul>
         </nav>
     </div>
-    <div class="main-area">
-        <form action="#" class="input-form family-form">
+    <div class="main-area" data-page__title="family">
+        <form action="#" class="input-form family-form" method="POST">
             <div class="tab family-info">
                 <div class="input-group">
-                    <input type="text" placeholder="Namba ya simu ya Mzazi" name="phone_no">
+                    <input type="text" placeholder="Namba ya simu ya Mzazi" name="phone_no" id="phone_no">
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Jina la Mzazi" name="fullname" readonly id="fullname">
                 </div>
                 <div class="input-group">
                     <input type="text" placeholder="Jina la Mtoto" name="fullname">

@@ -59,14 +59,36 @@ const personalPage = () => {
     image__input.addEventListener('change', showThumbnail, false)
     form_controls.forEach(form_control => form_control.addEventListener('focus', removeError, false))
 
+}
+
+const familyPage = () => {
+    const phone_no = document.querySelector("#phone_no");
+
+    const searchUser = async (e) => {
+        let num = e.target.value
+
+        const response = await fetch("../operation.php", {
+            method : "POST",
+            body : new URLSearchParams("phone_no=" + num)
+
+        })
+        const result = await response.json();
+        
+        
+        
+    }
 
 
+    phone_no.addEventListener("input", searchUser, false);
 }
 
 
 switch (target_section) {
     case 'personal':
         personalPage();
+        break
+    case 'family':
+        familyPage();
         break
     default:
         console.log("Default page")

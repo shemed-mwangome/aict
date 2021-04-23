@@ -223,7 +223,7 @@
                     <button for="user-photo" id="user-photo-btn" class="user-photo-btn"><i class="las la-camera la-lg"></i> Weka Picha</button>
                 </div>
                 <div class="input-group">
-                    <button type="submit" class="submit-btn" name="submit" id="submit-btn">
+                    <button type="submit" class="submit-btn" name="personal_submit" id="submit-btn">
                         <i class="las la-save la-lg"></i> Hifadhi
                     </button>
                 </div>
