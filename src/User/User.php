@@ -23,10 +23,10 @@ class User
 
     public function getUser($search)
     {
-        $sql = "SELECT * FROM particulars WHERE phone_no LIKE :phone_no";
-        $phone = "%$search%";
+        $sql = "SELECT * FROM particulars WHERE phone_no = :phone_no";
+        // $phone = "%$search%";
         $this->db->query($sql);
-        $this->db->bind(':phone_no', $phone);
+        $this->db->bind(':phone_no', $search);
         return $this->db->single();
     }
 

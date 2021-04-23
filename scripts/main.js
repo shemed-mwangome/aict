@@ -68,14 +68,16 @@ const familyPage = () => {
         let num = e.target.value
 
         const response = await fetch("../operation.php", {
-            method : "POST",
-            body : new URLSearchParams("phone_no=" + num)
+            method: "POST",
+            body: new URLSearchParams("phone_no=" + num)
 
         })
         const result = await response.json();
-        
-        
-        
+
+        document.querySelector("#fullname").value = `${result.fullname}`;
+
+
+
     }
 
 
