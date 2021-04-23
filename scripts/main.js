@@ -78,11 +78,15 @@ const familyPage = () => {
             body: data
         }
 
-        let response = await fetch(url, options)
+        try {
+            let response = await fetch(url, options)
+            let result = await response.json();
+            (result !== false) ? document.querySelector("#parent_name").value = result.fullname : document.querySelector("#parent_name").value = "";
+        }
+        catch (err) {
+            console.log("No such user");
+        }
 
-        let result = await response.json();
-
-        (result !== false) ? document.querySelector("#parent_name").value = result.fullname : document.querySelector("#parent_name").value = "";
     }
 
     const fetchChildren = async (e) => {
@@ -96,20 +100,35 @@ const familyPage = () => {
             method: "POST",
             body: data
         }
+        try {
+            let response = await fetch(url, options)
+            let result = await response.json();
+            console.log(result);
+        }
+        catch (err) {
+            console.log("Error to fetch");
+        }
 
-        let response = await fetch(url, options)
-        let result = await response.json();
 
-        console.log(result);
     }
 
     const registerChildren = async (e) => {
-        e.preventDefault();
-        
+        let url = "../operation.php"
+        let options = {
+            method: "POST",
+            body: data
+        }
 
+        try {
+            let response = await fetch(url, options)
+            let result = await response.json()
+            console.log(result)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    phone_no.addEventListener("input", searchUser, false);
+    phone_no.addEventListener("keyup", searchUser, false);
     phone_no.addEventListener("blur", fetchChildren, false);
     submitBtn.addEventListener("click", registerChildren, false);
 }
