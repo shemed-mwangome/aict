@@ -74,7 +74,8 @@ const familyPage = () => {
         })
         const result = await response.json();
 
-        document.querySelector("#fullname").value = `${result.fullname}`;
+        (result !== false) ? document.querySelector("#fullname").value = result.fullname : document.querySelector("#fullname").value = "";
+
 
 
 
