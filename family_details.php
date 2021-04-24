@@ -24,39 +24,91 @@
         </nav>
     </div>
     <div class="main-area" data-page__title="family">
-        <form action="operation.php" class="input-form family-form" method="POST">
+        <pre>
+        <?php
+
+        // print_r($_SESSION);
+        ?>
+        </pre>
+        <form action="operation.php" class="input-form family-form" method="POST" id="family-form">
             <div class="tab family-info">
                 <div class="input-group">
-                    <input type="text" placeholder="Namba ya simu ya Mzazi" name="phone_no" id="phone_no">
+                    <input type="text" placeholder="Namba ya simu ya Mzazi" name="phone_no" id="phone_no" value='<?php if (isset($_SESSION["child_data"]["phone_no"])) echo $_SESSION["child_data"]["phone_no"]; ?>' required>
                 </div>
                 <div class="input-group">
-                    <input type="text" placeholder="Jina la Mzazi" name="parent_name" readonly id="parent_name">
+                    <input type="text" placeholder="Jina la Mzazi" name="parent_name" readonly id="parent_name" value='<?php if (isset($_SESSION["child_data"]["parent_name"])) echo $_SESSION["child_data"]["parent_name"]; ?>'>
                 </div>
                 <div class="input-group">
-                    <input type="text" placeholder="Jina la Mtoto" name="fullname" id="fullname">
+                    <input type="text" placeholder="Jina la Mtoto" name="child_name" id="fullname" class="form-control" value='<?php if (isset($_SESSION["child_data"]["child_name"])) echo $_SESSION["child_data"]["child_name"]; ?>'>
+                    <span class="error">
+                        <?php
+                        if (isset($_SESSION["child_errors"]["child_name"])) {
+                            echo $_SESSION["child_errors"]["child_name"];
+                        }
+                        ?>
+                    </span>
                 </div>
                 <div class="input-group">
-                    <select name="gender" id="gender">
+                    <select name="child_gender" id="gender" class="form-control">
                         <option value="" selected hidden disabled>Jinsi</option>
-                        <option value="me">me</option>
-                        <option value="fe">ke</option>
+                        <option value="" selected hidden disabled>Jinsi</option>
+                        <option <?php
+                                if (isset($_SESSION["child_data"]["child_gender"]) && $_SESSION["child_data"]["child_gender"] == "me") {
+                                    echo "selected";
+                                }
+                                ?> value="me">me</option>
+                        <option <?php
+                                if (isset($_SESSION["child_data"]["child_gender"]) && $_SESSION["child_data"]["child_gender"] == "ke") {
+                                    echo "selected";
+                                }
+                                ?> value="ke">ke</option>
                     </select>
+                    <span class="error">
+                        <?php
+                        if (isset($_SESSION["child_errors"]["child_gender"])) {
+                            echo $_SESSION["child_errors"]["child_gender"];
+                        }
+                        ?>
+                    </span>
                 </div>
             </div>
             <div class="tab">
                 <div class="input-group">
-                    <input type="number" min="0" placeholder="Umri" name="age" id="age">
+                    <input type="number" min="0" placeholder="Umri" name="child_age" id="age" class="form-control" value='<?php if (isset($_SESSION["child_data"]["child_age"])) echo $_SESSION["child_data"]["child_age"]; ?>'>
+                    <span class="error">
+                        <?php
+                        if (isset($_SESSION["child_errors"]["child_age"])) {
+                            echo $_SESSION["child_errors"]["child_age"];
+                        }
+                        ?>
+                    </span>
                 </div>
                 <div class="input-group">
-                    <select name="is_staying_home" id="is_staying_home">
+                    <select name="child_location" id="is_staying_home" class="form-control">
                         <option value="" selected hidden disabled>Je anaishi nyumbani?</option>
-                        <option value="ndio">Ndio</option>
-                        <option value="hapana">Hapana</option>
+                        <option <?php
+                                if (isset($_SESSION["child_data"]["child_location"]) && $_SESSION["child_data"]["child_location"] == "ndio") {
+                                    echo "selected";
+                                }
+                                ?> value="ndio">ndio</option>
+                        <option <?php
+                                if (isset($_SESSION["child_data"]["child_location"]) && $_SESSION["child_data"]["child_location"] == "hapana") {
+                                    echo "selected";
+                                }
+                                ?> value="hapana">hapana</option>
                     </select>
+                    <span class="error">
+                        <?php
+                        if (isset($_SESSION["child_errors"]["child_location"])) {
+                            echo $_SESSION["child_errors"]["child_location"];
+                        }
+                        ?>
+                    </span>
                 </div>
                 <div class="input-group">
-                    <input type="hidden" name="parent_id" id="parent_id">
-                    <button type="submit" class="submit-btn" name="family_submit" id="submit-btn">
+                    <input type="hidden" name="parent_id" id="parent_id" value='<?php if (isset($_SESSION["child_data"]["parent_id"])) echo $_SESSION["child_data"]["parent_id"]; ?>'>
+                    <input type="hidden" name="action" value="register_children">
+                    <button type="submit" class="submit-btn" name="family_submit" id="submit-btn" value="Submit">
                         <i class="las la-save la-lg"></i> Hifadhi
                     </button>
                 </div>

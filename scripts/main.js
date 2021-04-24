@@ -63,9 +63,7 @@ const personalPage = () => {
 
 const familyPage = () => {
     const phone_no = document.querySelector("#phone_no");
-    const submitBtn = document.querySelector("#submit-btn")
-    const parent_id = document.querySelector("#parent_id");
-
+    const form_input = document.querySelectorAll(".form-control");
 
     const searchUser = async (e) => {
         let num = e.target.value
@@ -83,20 +81,23 @@ const familyPage = () => {
             let response = await fetch(url, options)
 
             let result = await response.json();
+            if (result !== false) {
+                document.querySelector("#parent_name").value = result.fullname
+                document.querySelector("#parent_id").value = result.id
+                document.querySelector("#parent_photo").src = result.photo
 
-            (result !== false) ? document.querySelector("#parent_name").value = result.fullname : document.querySelector("#parent_name").value = "";
-
-            (result !== false) ? document.querySelector("#parent_id").value = result.id : document.querySelector("#parent_id").value = "";
-
-            (result !== false) ? document.querySelector("#parent_photo").src = result.photo : document.querySelector("#parent_id").value = "";
+            }
+            else {
+                document.querySelector("#parent_name").value = ""
+                document.querySelector("#parent_id").value = ""
+                document.querySelector("#parent_id").value = "";
+            }
 
         }
         catch (err) {
             console.log(err);
-
             console.log("No such user");
         }
-
     }
 
     const fetchChildren = async (e) => {
@@ -127,7 +128,6 @@ const familyPage = () => {
             `
                 });
 
-
             }
             else {
                 output += `
@@ -149,18 +149,11 @@ const familyPage = () => {
                     </tr>`;
             document.querySelector("#display-data").innerHTML = output;
         }
-
-
     }
 
-    const registerChildren = async (e) => {
-        e.preventDefault();
-        alert("saved");
-    }
 
     phone_no.addEventListener("keyup", searchUser, false);
     phone_no.addEventListener("input", fetchChildren, false);
-    submitBtn.addEventListener("click", registerChildren, false);
 }
 
 

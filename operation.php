@@ -6,7 +6,6 @@ session_start();
 
 $errors = array();
 global $userdata;
-$fullname = $gender = $dob = $marital_status = $spouse_name = $date_marriage = $parent_name = $employer = $skills = $address = $phone_no = $email = $location = $street = $house_no = $user_photo = "";
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     header("Location: personal_details.php");
@@ -151,6 +150,63 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
     getChildren($phone_no);
 }
 
+if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST["action"] == "register_children")) {
+
+
+    $child_data = array();
+    $errors = array();
+    if (empty($_POST["phone_no"])) {
+        $errors["phone_no"] = "Weka namba ya simu";
+    } else {
+        $child_data["phone_no"] = clean_data($_POST["phone_no"]);
+    }
+    if (empty($_POST["parent_id"])) {
+        $errors["parent_id"] = "Weka namba ya simu";
+    } else {
+        $child_data["parent_id"] = clean_data($_POST["parent_id"]);
+    }
+    if (empty($_POST["parent_name"])) {
+        $errors["parent_name"] = "Jina za mzazi";
+    } else {
+        $child_data["parent_name"] = clean_data($_POST["parent_name"]);
+    }
+    if (empty($_POST["child_name"])) {
+        $errors["child_name"] = "Jina linahitajika";
+    } else {
+        $child_data["child_name"]= clean_data($_POST["child_name"]);
+    }
+
+    if (empty($_POST["child_gender"])) {
+        $errors["child_gender"] = "Jinsi inahitajika ";
+    } else {
+        $child_data["child_gender"] = clean_data($_POST["child_gender"]);
+    }
+
+    if (empty($_POST["child_age"])) {
+        $errors["child_age"] = "Umri unahitajika";
+    } else {
+        $child_data["child_age"] = clean_data($_POST["child_age"]);
+    }
+
+    if (empty($_POST["child_location"])) {
+        $errors["child_location"] = "Jaza mahali anapoishi";
+    } else {
+        $child_data["child_location"] = clean_data($_POST["child_location"]);
+    }
+
+    if(count($errors) > 0){
+        $_SESSION["child_errors"] = $errors;
+        $_SESSION["child_data"] = $child_data;
+        header("Location: family_details.php");
+    }
+    else{
+        $result = registerChildren($child_data);
+        if($result){
+            header("Location: family_details.php");
+        }
+    }
+}
+
 
 
 
@@ -212,3 +268,9 @@ function getChildren($phone_no)
     echo json_encode($row);
 }
 
+function registerChildren($data)
+{
+    $user = new \App\User\User();
+    return  $user->registerChildren($data);
+
+}

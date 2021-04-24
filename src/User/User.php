@@ -100,15 +100,29 @@ class User
         return $this->db->lastInsertId();
     }
 
-    public function rowCount(){
+    public function rowCount()
+    {
         return $this->db->rowCount();
     }
 
-    public function getChildren($parent_id){
+    public function getChildren($parent_id)
+    {
 
         $sql = "SELECT * FROM children WHERE particulars_id = :particulars_id";
         $this->db->query($sql);
         $this->db->bind(':particulars_id', $parent_id);
         return $this->db->resultSet();
+    }
+
+    public function registerChildren($data)
+    {
+        $sql = "INSERT INTO children(particulars_id, fullname, age, gender, is_staying_home) VALUES (:particulars_id, :fullname, :age, :gender, :is_staying_home)";
+        $this->db->query($sql);
+        $this->db->bind('particulars_id', $data["parent_id"]);
+        $this->db->bind('fullname', $data["child_name"]);
+        $this->db->bind('age', $data["child_age"]);
+        $this->db->bind('gender', $data["child_gender"]);
+        $this->db->bind('is_staying_home', $data["child_location"]);
+        return $this->db->execute();
     }
 }

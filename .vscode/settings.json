@@ -1,3 +1,33 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "admin_connection",
+            "group": "aict",
+            "database": "aict",
+            "username": "db_admin",
+            "password": "2uyDWuy/HW4dp+m"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "db_user",
+            "group": "aict",
+            "database": "aict",
+            "username": "db_user",
+            "password": ""
+        }
+    ]
 }
