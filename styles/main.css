@@ -41,8 +41,8 @@ a {
 }
 
 .error {
-  font-size: 0.8em;
   color: red;
+  font-size: 0.8em;
 }
 
 main.main-content {
@@ -87,6 +87,11 @@ header .flex {
 .container .col-right .sub-title {
   font-size: 1.2em;
   font-weight: bold;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator,
+input[type=date]::-webkit-inner-spin-button {
+  display: none;
 }
 
 /* Login area*/
@@ -169,6 +174,10 @@ header .flex {
 /* Navbar */
 .navbar {
   width: 100%;
+  padding: 0;
+}
+.navbar ul {
+  width: 100%;
 }
 .navbar .current {
   background-color: #1f2c39;
@@ -177,9 +186,11 @@ header .flex {
   display: block;
   width: 100%;
   padding: 1rem;
+  padding-bottom: 1rem;
   line-height: 1.8;
   text-align: left;
   font-size: 1em;
+  text-decoration: none;
   color: #ffffff;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   transition: 0.2s;
@@ -209,6 +220,11 @@ header .flex {
 }
 .input-form .input-group {
   margin: 0 0 0.5rem 0;
+}
+.input-form .input-group > span,
+.input-form .input-group input,
+.input-form .input-group select {
+  width: 100%;
 }
 .input-form input,
 .input-form select,
@@ -291,6 +307,15 @@ header .flex {
   grid-template-rows: minmax(auto, auto);
   gap: 2rem;
 }
+.family-form .input-group {
+  display: flex;
+  flex-direction: column;
+}
+.family-form .input-group > span,
+.family-form .input-group input,
+.family-form .input-group select {
+  width: 100%;
+}
 .family-form .input-group #parent_name {
   background-color: #f2f2f2;
 }
@@ -321,6 +346,11 @@ header .flex {
 }
 .family-form tr#no-data > td h1 {
   text-align: center;
+}
+.family-form td.action-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 /*# sourceMappingURL=main.css.map */

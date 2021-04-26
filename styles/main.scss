@@ -11,8 +11,8 @@
 }
 
 .error {
-    font-size: .8em;
     color: red;
+    font-size: .8em;
 }
 
 main.main-content {
@@ -60,6 +60,11 @@ header .flex {
         font-size: 1.2em;
         font-weight: bold;
     }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button {
+    display: none;
 }
 
 /* Login area*/
@@ -147,20 +152,28 @@ header .flex {
 /* Navbar */
 .navbar {
     width: 100%;
+    padding: 0;
+
+    ul {
+        width: 100%;
+    }
 
     .current {
         background-color: #1f2c39;
     }
 
 
+
     a {
         display: block;
         width: 100%;
         padding: 1rem;
+        padding-bottom: 1rem;
         line-height: 1.8;
         // margin: 0 0 .5em 0;
         text-align: left;
         font-size: 1em;
+        text-decoration: none;
         color: $text-color;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         // border-bottom: 1px solid black;
@@ -198,7 +211,14 @@ header .flex {
 
     .input-group {
         margin: 0 0 .5rem 0;
+
+        &>span,
+        input,
+        select {
+            width: 100%;
+        }
     }
+
 
     input,
     select,
@@ -300,6 +320,15 @@ header .flex {
     gap: 2rem;
 
     .input-group {
+        display: flex;
+        flex-direction: column;
+
+        &>span,
+        input,
+        select {
+            width: 100%;
+        }
+
         #parent_name {
             background-color: #f2f2f2;
         }
@@ -336,12 +365,17 @@ header .flex {
         background-color: #ddd;
     }
 
-    tr#no-data > td {
+    tr#no-data>td {
         h1 {
             text-align: center;
         }
     }
 
-    
+    td.action-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
 
 }

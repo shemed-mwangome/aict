@@ -1,8 +1,13 @@
 <?php include "templates/header.php"; ?>
+<?php
+if (isset($_COOKIE["user_id"])) {
+    $user_id = $_COOKIE["user_id"];
+}
+
+?>
 <main class="main-content">
     <div class="sidebar">
         <p class="welcome-note">Welcome, <span>Seleman</span></p>
-        <div class="pager"></div>
         <nav class="navbar">
             <ul>
                 <li>
@@ -11,11 +16,11 @@
                 <li>
                     <a href="personal_details.php"><i class="las la-user la-lg"></i> Taarifa Binafsi</a>
                 </li>
-                <li class="current">
-                    <a href="family_details.php"><i class="las la-user-friends la-lg"></i> Taarifa za Watoto</a>
-                </li>
                 <li>
                     <a href="religious_details.php"><i class="las la-church la-lg"></i> Taarifa za Kiimani</a>
+                </li>
+                <li class="current">
+                    <a href="family_details.php"><i class="las la-user-friends la-lg"></i> Taarifa za Watoto</a>
                 </li>
                 <li>
                     <a href="index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
@@ -24,12 +29,6 @@
         </nav>
     </div>
     <div class="main-area" data-page__title="family">
-        <pre>
-        <?php
-
-        // print_r($_SESSION);
-        ?>
-        </pre>
         <form action="operation.php" class="input-form family-form" method="POST" id="family-form">
             <div class="tab family-info">
                 <div class="input-group">
@@ -106,7 +105,7 @@
                     </span>
                 </div>
                 <div class="input-group">
-                    <input type="hidden" name="parent_id" id="parent_id" value='<?php if (isset($_SESSION["child_data"]["parent_id"])) echo $_SESSION["child_data"]["parent_id"]; ?>'>
+                    <input type="hidden" name="parent_id" id="parent_id" value='<?php if (isset($user_id)) echo $user_id; ?>'>
                     <input type="hidden" name="action" value="register_children">
                     <button type="submit" class="submit-btn" name="family_submit" id="submit-btn" value="Submit">
                         <i class="las la-save la-lg"></i> Hifadhi
@@ -128,11 +127,12 @@
                         <th>Jinsi</th>
                         <th>Umri</th>
                         <th>Je anaishi nyumbani?</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="display-data">
                     <tr id="no-data">
-                        <td colspan="4">
+                        <td colspan="5">
                             <h1>Hakuna Taarifa</h1>
                         </td>
                     </tr>
@@ -141,5 +141,8 @@
 
         </form>
 
+    </div>
 
-        <?php include "templates/footer.php"; ?>
+</main>
+</div>
+<?php include "templates/footer.php"; ?>

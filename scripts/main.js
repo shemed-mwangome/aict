@@ -121,9 +121,13 @@ const familyPage = () => {
                     output += `
                 <tr>
                     <td>${item.fullname}</td>
-                    <td>${item.age}</td>
                     <td>${item.gender}</td>
+                    <td>${item.age}</td>
                     <td>${item.is_staying_home}</td>
+                    <td class="action-item">
+                        <a href="#" title="Edit" class="action"><i class="las la-pen la-lg" ></i></a>
+                        <a href="#" title="Delete" class="action"><i class="las la-trash la-lg"></i></a>
+                    </td>
                 </tr>
             `
                 });
@@ -132,7 +136,7 @@ const familyPage = () => {
             else {
                 output += `
                     <tr id="no-data">
-                            <td colspan="4">
+                            <td colspan="5">
                                 <h1>Hakuna Taarifa</h1>
                             </td>
                     </tr>`;
@@ -143,7 +147,7 @@ const familyPage = () => {
         catch (err) {
             output += `
                     <tr id="no-data">
-                        <td colspan="4">
+                        <td colspan="5">
                             <h1>Hakuna Taarifa</h1>
                         </td>
                     </tr>`;

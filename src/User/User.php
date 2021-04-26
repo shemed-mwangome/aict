@@ -29,6 +29,14 @@ class User
         $this->db->bind(':phone_no', $search);
         return $this->db->single();
     }
+    public function loadUser($user_id)
+    {
+        $sql = "SELECT * FROM particulars WHERE id = :id";
+        // $phone = "%$search%";
+        $this->db->query($sql);
+        $this->db->bind(':id', $user_id);
+        return $this->db->single();
+    }
 
     public function registerUser($data)
     {
@@ -124,5 +132,18 @@ class User
         $this->db->bind('gender', $data["child_gender"]);
         $this->db->bind('is_staying_home', $data["child_location"]);
         return $this->db->execute();
+    }
+
+    public function registerReligion($data)
+    {
+        return print_r($data);
+        // $sql = "INSERT INTO children(particulars_id, fullname, age, gender, is_staying_home) VALUES (:particulars_id, :fullname, :age, :gender, :is_staying_home)";
+        // $this->db->query($sql);
+        // $this->db->bind('particulars_id', $data["parent_id"]);
+        // $this->db->bind('fullname', $data["child_name"]);
+        // $this->db->bind('age', $data["child_age"]);
+        // $this->db->bind('gender', $data["child_gender"]);
+        // $this->db->bind('is_staying_home', $data["child_location"]);
+        // return $this->db->execute();
     }
 }

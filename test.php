@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // use App\User\User;
 
@@ -13,3 +14,6 @@
 if(1 == true){
     echo "Woo";
 }
+
+print_r($_SESSION);
+print_r($_COOKIE);

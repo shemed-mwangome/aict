@@ -131,6 +131,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["personal_submit"])) {
         }
 
         registerUser($userdata);
+        unset($_SESSION["errors"]);
+        unset($_SESSION["userdata"]);
+
+        header("Location: religious_details.php");
+        exit();
     }
 }
 
@@ -141,6 +146,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["a
     getUser($phone_no);
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["action"] == "load_user") {
+
+    $user_id = clean_data($_POST["user_id"]);
+
+    loadUser($user_id);
+}
 
 if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST["action"] == "fetch_children")) {
 
@@ -173,7 +184,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
     if (empty($_POST["child_name"])) {
         $errors["child_name"] = "Jina linahitajika";
     } else {
-        $child_data["child_name"]= clean_data($_POST["child_name"]);
+        $child_data["child_name"] = clean_data($_POST["child_name"]);
     }
 
     if (empty($_POST["child_gender"])) {
@@ -194,19 +205,97 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
         $child_data["child_location"] = clean_data($_POST["child_location"]);
     }
 
-    if(count($errors) > 0){
+    if (count($errors) > 0) {
         $_SESSION["child_errors"] = $errors;
         $_SESSION["child_data"] = $child_data;
         header("Location: family_details.php");
-    }
-    else{
+    } else {
         $result = registerChildren($child_data);
-        if($result){
+        if ($result) {
+            unset($_SESSION["child_errors"]);
+            unset($_SESSION["child_data"]);
             header("Location: family_details.php");
+            exit();
         }
     }
 }
 
+if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST["action"] == "register_religion")) {
+
+
+
+    $religion_data = array();
+    $errors = array();
+    if (empty($_POST["user_id"])) {
+        $errors["user_id"] = "Jaza ID";
+    } else {
+        $religion_data["user_id"] = clean_data($_POST["user_id"]);
+    }
+    if (empty($_POST["is_graduate"])) {
+        $errors["is_graduate"] = "Jaza uhitimu";
+    } else {
+        $religion_data["is_graduate"] = clean_data($_POST["is_graduate"]);
+    }
+    if (empty($_POST["has_bible_knowledge"])) {
+        $errors["has_bible_knowledge"] = "Jaza elimu ya Biblia";
+    } else {
+        $religion_data["has_bible_knowledge"] = clean_data($_POST["has_bible_knowledge"]);
+    }
+    if (empty($_POST["joined_date"])) {
+        $errors["joined_date"] = "Jaza tarehe ya kujiunga";
+    } else {
+        $religion_data["joined_date"] = clean_data($_POST["joined_date"]);
+    }
+    if (empty($_POST["salvation_date"])) {
+        $errors["salvation_date"] = "Jaza tarehe ya kuokoka";
+    } else {
+        $religion_data["salvation_date"] = clean_data($_POST["salvation_date"]);
+    }
+
+    if (empty($_POST["baptism_date"])) {
+        $errors["baptism_date"] = "Jaza tarehe ya kubatizwa";
+    } else {
+        $religion_data["baptism_date"] = clean_data($_POST["baptism_date"]);
+    }
+
+    if (empty($_POST["baptism_location"])) {
+        $errors["baptism_location"] = "Jaza mahali pa kuokoka";
+    } else {
+        $religion_data["baptism_location"] = clean_data($_POST["baptism_location"]);
+    }
+
+    if (empty($_POST["reason"])) {
+        $errors["reason"] = "Jaza sababu za kuokoka";
+    } else {
+        $religion_data["reason"] = clean_data($_POST["reason"]);
+    }
+    if (empty($_POST["prefered_work"])) {
+        $errors["prefered_work"] = "Jaza kazi unayoipenda";
+    } else {
+        $religion_data["prefered_work"] = clean_data($_POST["prefered_work"]);
+    }
+    if (empty($_POST["prefered_section"])) {
+        $errors["prefered_section"] = "Jaza kitengo unachokipenda";
+    } else {
+        $religion_data["prefered_section"] = clean_data($_POST["prefered_section"]);
+    }
+
+
+    if (count($errors) > 0) {
+        $_SESSION["religion_errors"] = $errors;
+        $_SESSION["religion_data"] = $religion_data;
+        header("Location: religious_details.php");
+        exit();
+    } else {
+        $result = registerReligion($religion_data);
+        if ($result) {
+            unset($_SESSION["religion_errors"]);
+            unset($_SESSION["religion_data"]);
+            header("Location: religious_details.php");
+            exit();
+        }
+    }
+}
 
 
 
@@ -231,6 +320,10 @@ function registerUser($userdata)
     if ($user_registered) {
         $user_id = $user->lastId();
 
+        // Storing user_id in session to be used later for fetching user info instead of phone number
+        $_SESSION["user_id"] = $user_id;
+        setcookie("user_id", $_SESSION["user_id"], 0);
+
         // register spouse
         $user->registerMarriage($user_id, $userdata);
 
@@ -239,8 +332,7 @@ function registerUser($userdata)
 
         // Register employment
         $user->registerEmployement($user_id, $userdata);
-
-        header("Location: family_details.php");
+        
     }
 }
 
@@ -249,6 +341,14 @@ function getUser($phone_no)
     $user = new \App\User\User();
 
     $row = $user->getUser($phone_no);
+    echo json_encode($row);
+}
+
+function loadUser($user_id)
+{
+    $user = new \App\User\User();
+
+    $row = $user->loadUser($user_id);
     echo json_encode($row);
 }
 
@@ -272,5 +372,10 @@ function registerChildren($data)
 {
     $user = new \App\User\User();
     return  $user->registerChildren($data);
+}
 
+function registerReligion($data)
+{
+    $user = new \App\User\User();
+    return  $user->registerReligion($data);
 }

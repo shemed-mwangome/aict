@@ -2,7 +2,6 @@
 <main class="main-content">
     <div class="sidebar">
         <p class="welcome-note">Welcome, <span>Seleman</span></p>
-        <div class="pager"></div>
         <nav class="navbar">
             <ul>
                 <li>
@@ -11,11 +10,12 @@
                 <li class="current">
                     <a href="personal_details.php"><i class="las la-user la-lg"></i> Taarifa Binafsi</a>
                 </li>
-                <li>
-                    <a href="family_details.php"><i class="las la-user-friends la-lg"></i> Taarifa za Watoto</a>
-                </li>
+
                 <li>
                     <a href="religious_details.php"><i class="las la-church la-lg"></i> Taarifa za Kiimani</a>
+                </li>
+                <li>
+                    <a href="family_details.php"><i class="las la-user-friends la-lg"></i> Taarifa za Watoto</a>
                 </li>
                 <li>
                     <a href="index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
@@ -60,7 +60,7 @@
                     </span>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="dob" id="dob" class="form-control" placeholder="Tarehe ya Kuzaliwa" onclick="(this.type = 'date');" autocomplete="off" value='<?php if (isset($_SESSION["userdata"]["dob"])) echo $_SESSION["userdata"]["dob"]; ?>'>
+                    <input type="text" name="dob" id="dob" class="form-control date-input" placeholder="Tarehe ya Kuzaliwa" onclick="(this.type = 'date');" autocomplete="off" value='<?php if (isset($_SESSION["userdata"]["dob"])) echo $_SESSION["userdata"]["dob"]; ?>'>
                     <span class="error">
                         <?php
                         if (isset($_SESSION["errors"]["dobErr"])) {
@@ -112,7 +112,7 @@
                     </span>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="date_marriage" id="date_marriage" class="form-control" placeholder="Tarehe ya Ndoa" onclick="(this.type = 'date')" autocomplete="off" value='<?php if (isset($_SESSION["userdata"]["date_marriage"])) echo $_SESSION["userdata"]["date_marriage"]; ?>'>
+                    <input type="text" name="date_marriage" id="date_marriage" class="form-control date-input" placeholder="Tarehe ya Ndoa" onclick="(this.type = 'date')" autocomplete="off" value='<?php if (isset($_SESSION["userdata"]["date_marriage"])) echo $_SESSION["userdata"]["date_marriage"]; ?>'>
                     <span class="error">
                         <?php
                         if (isset($_SESSION["errors"]["date_marriageErr"])) {
@@ -228,4 +228,18 @@
                     </button>
                 </div>
             </div>
-            <?php include "templates/footer.php"; ?>
+    </div>
+
+</main>
+</div>
+<?php include "templates/footer.php"; ?>
+<script>
+    $(document).ready(function() {
+        $(".date-input").datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1900:c"
+        }).val();
+    });
+</script>

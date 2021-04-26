@@ -1,7 +1,6 @@
 <main class="main-content">
     <div class="sidebar">
         <p class="welcome-note">Welcome, <span>Seleman</span></p>
-        <div class="pager"></div>
         <nav class="navbar">
             <ul>
                 <li>
