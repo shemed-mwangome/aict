@@ -29,5 +29,7 @@
             "username": "db_user",
             "password": ""
         }
-    ]
+    ],
+    "todo-tree.tree.scanMode": "workspace only",
+    "todo-tree.tree.showCountsInTree": true
 }

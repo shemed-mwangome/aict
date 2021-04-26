@@ -279,6 +279,15 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
     } else {
         $religion_data["prefered_section"] = clean_data($_POST["prefered_section"]);
     }
+    if (!empty($_POST["leadership_type"])) {
+        $religion_data["leadership_type"] = clean_data($_POST["leadership_type"]);
+    } 
+    if (!empty($_POST["special_needs"])) {
+        $religion_data["special_needs"] = clean_data($_POST["special_needs"]);
+    } 
+    if (!empty($_POST["description"])) {
+        $religion_data["description"] = clean_data($_POST["description"]);
+    } 
 
 
     if (count($errors) > 0) {
@@ -287,7 +296,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
         header("Location: religious_details.php");
         exit();
     } else {
-        $result = registerReligion($religion_data);
+        $result = registerReligionDetails($religion_data);
         if ($result) {
             unset($_SESSION["religion_errors"]);
             unset($_SESSION["religion_data"]);
@@ -374,8 +383,16 @@ function registerChildren($data)
     return  $user->registerChildren($data);
 }
 
-function registerReligion($data)
+function registerReligionDetails($data)
 {
     $user = new \App\User\User();
-    return  $user->registerReligion($data);
+
+    // Insert education details
+    $user->registerEducation($data);
+
+    // Insert leadership details
+    $user->registerLeadership($data);
+
+    // insert religious details and return true if success
+    return $user->registerReligion($data);
 }

@@ -101,18 +101,6 @@ if (isset($_COOKIE["user_id"])) {
                         ?>
                     </span>
                 </div>
-            </div>
-            <div class="tab contact-details">
-                <div class="input-group">
-                    <textarea name="reason" id="reason" cols="30" rows="10" placeholder="Sababu ya Kumuamini Yesu awe Bwana na Mwokozi wa maisha yako"></textarea>
-                    <span class="error">
-                        <?php
-                        if (isset($_SESSION["child_errors"]["child_name"])) {
-                            echo $_SESSION["child_errors"]["child_name"];
-                        }
-                        ?>
-                    </span>
-                </div>
                 <div class="input-group">
                     <input type="text" name="prefered_work" id="prefered_work" placeholder="Kazi unayopenda kanisani">
                     <span class="error">
@@ -123,6 +111,19 @@ if (isset($_COOKIE["user_id"])) {
                         ?>
                     </span>
                 </div>
+            </div>
+            <div class="tab contact-details">
+                <div class="input-group">
+                    <textarea name="reason" id="reason" cols="30" rows="5" placeholder="Sababu ya Kumuamini Yesu awe Bwana na Mwokozi wa maisha yako"></textarea>
+                    <span class="error">
+                        <?php
+                        if (isset($_SESSION["child_errors"]["child_name"])) {
+                            echo $_SESSION["child_errors"]["child_name"];
+                        }
+                        ?>
+                    </span>
+                </div>
+
                 <div class="input-group">
                     <select name="prefered_section" id="prefered_section">
                         <option value="" disabled selected hidden>Kamati unayopenda kushiriki</option>
@@ -131,6 +132,36 @@ if (isset($_COOKIE["user_id"])) {
                         <option value="usafi">Usafi</option>
                         <option value="usafi">Usafi</option>
                     </select>
+                    <span class="error">
+                        <?php
+                        if (isset($_SESSION["child_errors"]["child_name"])) {
+                            echo $_SESSION["child_errors"]["child_name"];
+                        }
+                        ?>
+                    </span>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="leadership_type" id="leadership_type" placeholder="Uongozi kanisani">
+                    <span class="error">
+                        <?php
+                        if (isset($_SESSION["child_errors"]["child_name"])) {
+                            echo $_SESSION["child_errors"]["child_name"];
+                        }
+                        ?>
+                    </span>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="special_needs" id="special_needs" placeholder="Mahitaji Maalumu">
+                    <span class="error">
+                        <?php
+                        if (isset($_SESSION["child_errors"]["child_name"])) {
+                            echo $_SESSION["child_errors"]["child_name"];
+                        }
+                        ?>
+                    </span>
+                </div>
+                <div class="input-group">
+                    <textarea name="description" id="description" cols="30" rows="3" placeholder="Maelezo Mengine"></textarea>
                     <span class="error">
                         <?php
                         if (isset($_SESSION["child_errors"]["child_name"])) {
@@ -166,7 +197,6 @@ if (isset($_COOKIE["user_id"])) {
     let user_id = document.querySelector("#user_id");
     let user_photo = document.querySelector("#user_photo");
     let default_photo = user_photo.src
-    console.log(document.images);
     // Fetch user information
     let url = "operation.php";
     let data = new URLSearchParams()
