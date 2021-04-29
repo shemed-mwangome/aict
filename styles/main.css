@@ -126,7 +126,7 @@ input[type=date]::-webkit-inner-spin-button {
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-.login-form input[type=submit] {
+.login-form button[type=submit] {
   background-color: #26A69A;
   border: none;
   outline: none;
@@ -135,8 +135,9 @@ input[type=date]::-webkit-inner-spin-button {
   font-weight: bold;
   cursor: pointer;
   padding: 10px;
+  width: 100%;
 }
-.login-form input[type=submit]:hover {
+.login-form button[type=submit]:hover {
   background-color: #00897B;
 }
 

@@ -100,7 +100,7 @@ input[type="date"]::-webkit-inner-spin-button {
     }
 }
 
-.login-form input[type=submit] {
+.login-form button[type=submit] {
     background-color: $primary-color;
     border: none;
     outline: none;
@@ -109,6 +109,7 @@ input[type="date"]::-webkit-inner-spin-button {
     font-weight: bold;
     cursor: pointer;
     padding: 10px;
+    width: 100%;
 
     &:hover {
         background-color: $secondary-color;

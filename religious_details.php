@@ -3,6 +3,9 @@
 
 if (isset($_COOKIE["user_id"])) {
     $user_id = $_COOKIE["user_id"];
+} else {
+    // header("Location: personal_details.php");
+    // die();
 }
 
 ?>
@@ -127,10 +130,6 @@ if (isset($_COOKIE["user_id"])) {
                 <div class="input-group">
                     <select name="prefered_section" id="prefered_section">
                         <option value="" disabled selected hidden>Kamati unayopenda kushiriki</option>
-                        <option value="usafi">Usafi</option>
-                        <option value="usafi"> Usafi </option>
-                        <option value="usafi">Usafi</option>
-                        <option value="usafi">Usafi</option>
                     </select>
                     <span class="error">
                         <?php
@@ -192,21 +191,32 @@ if (isset($_COOKIE["user_id"])) {
 </main>
 </div>
 
-<?php include "templates/footer.php"; ?>>
+<?php include "templates/scripts.php"; ?>
 <script>
+    $(document).ready(function() {
+        $(".date-input").datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1900:c"
+        }).val();
+    });
+
+
     let user_id = document.querySelector("#user_id");
     let user_photo = document.querySelector("#user_photo");
     let default_photo = user_photo.src
-    // Fetch user information
-    let url = "operation.php";
-    let data = new URLSearchParams()
-    data.append('user_id', user_id.value)
-    data.append('action', 'load_user')
-    let options = {
-        method: "POST",
-        body: data
-    }
+
     const loadUser = async () => {
+        // Fetch user information
+        let url = "operation.php";
+        let data = new URLSearchParams()
+        data.append('user_id', user_id.value)
+        data.append('action', 'load_user')
+        let options = {
+            method: "POST",
+            body: data
+        }
         try {
             const response = await fetch(url, options);
             const result = await response.json()
@@ -220,15 +230,37 @@ if (isset($_COOKIE["user_id"])) {
 
     }
 
+    const fetchSection = async () => {
+        let prefered_section = document.querySelector("#prefered_section");
+        let output = ""
+        let url = "operation.php";
+        let data = new URLSearchParams()
+        data.append('action', 'fetch_section')
+        let options = {
+            method: "POST",
+            body: data
+        }
 
-    $(document).ready(function() {
-        $(".date-input").datepicker({
-            dateFormat: "yy-mm-dd",
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "1900:c"
-        }).val();
-    });
+        try {
+            const response = await fetch(url, options);
+            const result = await response.json()
+            output += `<option value="" disabled selected hidden>Kamati unayopenda kushiriki</option>`;
+
+            if (result) {
+                result.forEach(item => {
+                    output += `<option value="${item.id}" >${item.name}</option>`;
+                });
+
+                document.querySelector("#prefered_section").innerHTML = output;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
 
     loadUser()
+    fetchSection()
 </script>
+<?php include "templates/footer.php"; ?>

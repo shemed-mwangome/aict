@@ -153,6 +153,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["a
     loadUser($user_id);
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["action"] == "fetch_section") {
+
+    fetchSection();
+}
+
 if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST["action"] == "fetch_children")) {
 
     $phone_no = clean_data($_POST["phone_no"]);
@@ -214,6 +219,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
         if ($result) {
             unset($_SESSION["child_errors"]);
             unset($_SESSION["child_data"]);
+            setcookie("parent_id", clean_data($_POST["user_id"]));
             header("Location: family_details.php");
             exit();
         }
@@ -282,12 +288,21 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
     if (!empty($_POST["leadership_type"])) {
         $religion_data["leadership_type"] = clean_data($_POST["leadership_type"]);
     } 
+    else{
+        $religion_data["leadership_type"] = "Hakuna";
+    }
     if (!empty($_POST["special_needs"])) {
         $religion_data["special_needs"] = clean_data($_POST["special_needs"]);
-    } 
+    }
+    else{
+        $religion_data["special_needs"] = "Hakuna";
+    }
     if (!empty($_POST["description"])) {
         $religion_data["description"] = clean_data($_POST["description"]);
     } 
+    else{
+        $religion_data["description"] = "Hakuna";
+    }
 
 
     if (count($errors) > 0) {
@@ -300,7 +315,8 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
         if ($result) {
             unset($_SESSION["religion_errors"]);
             unset($_SESSION["religion_data"]);
-            header("Location: religious_details.php");
+            setcookie("user_id", "", time() - 60);
+            header("Location: family_details.php");
             exit();
         }
     }
@@ -358,6 +374,14 @@ function loadUser($user_id)
     $user = new \App\User\User();
 
     $row = $user->loadUser($user_id);
+    echo json_encode($row);
+}
+
+function fetchSection()
+{
+    $user = new \App\User\User();
+
+    $row = $user->fetchSection();
     echo json_encode($row);
 }
 

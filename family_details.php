@@ -145,4 +145,8 @@ if (isset($_COOKIE["user_id"])) {
 
 </main>
 </div>
+<?php include "templates/scripts.php"; ?>
+<!-- Custom scripts -->
+
+
 <?php include "templates/footer.php"; ?>

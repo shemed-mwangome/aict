@@ -37,6 +37,12 @@ class User
         $this->db->bind(':id', $user_id);
         return $this->db->single();
     }
+    public function fetchSection()
+    {
+        $sql = "SELECT * FROM section;";
+        $this->db->query($sql);
+        return $this->db->resultSet();
+    }
 
     public function registerUser($data)
     {

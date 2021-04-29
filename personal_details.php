@@ -232,7 +232,7 @@
 
 </main>
 </div>
-<?php include "templates/footer.php"; ?>
+<?php include "templates/scripts.php"; ?>
 <script>
     $(document).ready(function() {
         $(".date-input").datepicker({
@@ -243,3 +243,4 @@
         }).val();
     });
 </script>
+<?php include "templates/footer.php"; ?>
