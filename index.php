@@ -36,7 +36,7 @@ date_default_timezone_set("Africa/Dar_es_Salaam");
         </header>
         <div class="login " data-page__title="login">
             <i class="las la-user-circle la-6x user-avatar"></i>
-            <form action="login.php" method="POST" id="login-form" class="login-form">
+            <form action="login.php" method="POST" id="loginForm" class="loginForm" enctype="multipart/form-data">
                 <div class="input-group">
                     <input type="text" name="username" id="txt_username" placeholder="Username">
                 </div>
@@ -44,7 +44,7 @@ date_default_timezone_set("Africa/Dar_es_Salaam");
                     <input type="password" placeholder="Password" name="password" id="txt_password">
                 </div>
                 <div class="input-group">
-                    <button type="submit" class="submit-btn" id="submit-btn" name="submit">Login</button>
+                    <button type="submit" class="submit-btn" id="submit-btn">Login</button>
                 </div>
             </form>
         </div>
@@ -52,6 +52,30 @@ date_default_timezone_set("Africa/Dar_es_Salaam");
     <?php include "templates/scripts.php"; ?>
     <!-- Custom Scripts -->
 
-<script></script>
+    <script>
+        const loginForm = document.querySelector("#loginForm")
+
+        const login = async (e) => {
+            e.preventDefault()
+
+            let data = new FormData(loginForm)
+            data.append('action', 'login')
+
+            let options = {
+                method: 'POST',
+                body: data
+            }
+
+            fetch('login.php', options)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+        loginForm.addEventListener("submit", login)
+    </script>
 
     <?php include "templates/footer.php"; ?>
