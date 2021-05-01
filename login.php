@@ -5,6 +5,8 @@ require realpath(__DIR__ . "/vendor/autoload.php");
 $errors = array();
 $userdata = array();
 $username = $password = "";
+$page = "";
+$success = false;
 
 if (isset($_POST["action"]) && $_POST["action"] == "login") {
 
@@ -25,9 +27,6 @@ if (isset($_POST["action"]) && $_POST["action"] == "login") {
     } else {
         $result = login($username, $password);
 
-        $page = "";
-        $success = false;
-
         if ($result) {
             $isValid = password_verify($password, $result->password);
 
@@ -41,6 +40,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "login") {
                         break;
                     default:
                         $page = "default";
+                        break;
                 }
                 $success = true;
             }

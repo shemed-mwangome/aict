@@ -31,5 +31,6 @@
         }
     ],
     "todo-tree.tree.scanMode": "workspace only",
-    "todo-tree.tree.showCountsInTree": true
+    "todo-tree.tree.showCountsInTree": true,
+    "zenMode.hideLineNumbers": false
 }

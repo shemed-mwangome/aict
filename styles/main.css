@@ -40,9 +40,13 @@ a {
   padding: 0 40px;
 }
 
-.error {
+.text-error {
   color: red;
   font-size: 0.8em;
+}
+
+.input-error {
+  border: 1px solid red;
 }
 
 main.main-content {
