@@ -13,7 +13,7 @@
                     <a href="report.php"><i class="las la-folder la-lg"></i> Ripoti</a>
                 </li>
                 <li>
-                    <a href="../index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
+                    <a href="logout.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
                 </li>
             </ul>
         </nav>
