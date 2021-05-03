@@ -1,4 +1,11 @@
 <?php include "templates/header.php"; ?>
+<?php
+// If user is not logged in return to login page - For operator of the page
+if (!isset($_SESSION['isLogged'])) {
+    header("Location: index.php");
+    die();
+}
+?>
 <main class="main-content">
     <div class="sidebar">
         <p class="welcome-note">Welcome, <span>Seleman</span></p>
@@ -18,7 +25,7 @@
                     <a href="family_details.php"><i class="las la-user-friends la-lg"></i> Taarifa za Watoto</a>
                 </li>
                 <li>
-                    <a href="index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
+                    <a href="logout.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
                 </li>
             </ul>
         </nav>
@@ -224,7 +231,7 @@
                 </div>
                 <div class="input-group">
                     <button type="submit" class="submit-btn" name="personal_submit" id="submit-btn">
-                        <i class="las la-save la-lg"></i> Hifadhi
+                        <i class="las la-save la-lg"></i> Endelea
                     </button>
                 </div>
             </div>

@@ -1,8 +1,20 @@
 <?php include "templates/header.php"; ?>
+
 <?php
+// If user is not logged in return to login page - For operator of the page
+if (!isset($_SESSION['isLogged'])) {
+    header("Location: index.php");
+    die();
+}
+// if your cookie is  set make it as user id and use it to insert child data to the reg form
 if (isset($_COOKIE["user_id"])) {
     $user_id = $_COOKIE["user_id"];
+} else {
+    // if your cookie is not set return to the reg form
+    // header("Location: personal_details.php");
+    // die();
 }
+
 
 ?>
 <main class="main-content">
@@ -23,7 +35,7 @@ if (isset($_COOKIE["user_id"])) {
                     <a href="family_details.php"><i class="las la-user-friends la-lg"></i> Taarifa za Watoto</a>
                 </li>
                 <li>
-                    <a href="index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
+                    <a href="logout.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
                 </li>
             </ul>
         </nav>
@@ -147,6 +159,10 @@ if (isset($_COOKIE["user_id"])) {
 </div>
 <?php include "templates/scripts.php"; ?>
 <!-- Custom scripts -->
+<script>
 
+
+
+</script>
 
 <?php include "templates/footer.php"; ?>

@@ -2,10 +2,8 @@
 session_start();
 
 require realpath(__DIR__ . "/vendor/autoload.php");
-$errors = array();
-$userdata = array();
+$errors = $result = array();
 $username = $password = "";
-$page = "";
 $success = false;
 
 if (isset($_POST["action"]) && $_POST["action"] == "login") {
@@ -13,43 +11,58 @@ if (isset($_POST["action"]) && $_POST["action"] == "login") {
     if (!empty($_POST["username"])) {
         $username = clean_data($_POST["username"]);
     } else {
-        $errors["username"] = "Hakikisha username yako";
+        $errors["username"] = "Jaza jina la mtumiaji";
     }
 
     if (!empty($_POST["password"])) {
         $password = clean_data($_POST["password"]);
     } else {
-        $errors["password"] = "Hakikisha password yako";
+        $errors["password"] = "Jaza neno la siri yako";
     }
 
     if (count($errors) > 0) {
-        echo json_encode($errors);
+        $result['errors'] =  $errors;
+        echo json_encode($result);
     } else {
-        $result = login($username, $password);
+        $dbResult = login($username, $password);
 
-        if ($result) {
-            $isValid = password_verify($password, $result->password);
+        if ($dbResult) {
+            $isValid = password_verify($password, $dbResult->password);
 
             if ($isValid) {
-                switch ($result->permission_id) {
+                $page = "";
+                switch ($dbResult->permission_id) {
                     case 1:
                         $page = "administrator";
                         break;
                     case 2:
-                        $page = "operator";
+                        $page = "standard";
                         break;
                     default:
                         $page = "default";
                         break;
                 }
                 $success = true;
+                $_SESSION["isLogged"] = true;
+                $_SESSION['user'] = $page;
+            } else {
+                $errors["password_error"] = "Umekosea neno siri la mtumiaji";
             }
+        } else {
+            $errors["not_found"] = "Umekosea jina la mtumiaji";
         }
 
-
-        $output = ['success' => $success, 'page' => $page];
-
-        echo json_encode($output);
+        if (count($errors) > 0) {
+            $result["errors"] = $errors;
+            echo json_encode($result);
+        } else {
+            $success = array(
+                "status" => true,
+                "page" => $page
+            );
+            $result["success"] = $success;
+            echo json_encode($result);
+        }
     }
 }
 

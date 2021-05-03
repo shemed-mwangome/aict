@@ -287,20 +287,17 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
     }
     if (!empty($_POST["leadership_type"])) {
         $religion_data["leadership_type"] = clean_data($_POST["leadership_type"]);
-    } 
-    else{
+    } else {
         $religion_data["leadership_type"] = "Hakuna";
     }
     if (!empty($_POST["special_needs"])) {
         $religion_data["special_needs"] = clean_data($_POST["special_needs"]);
-    }
-    else{
+    } else {
         $religion_data["special_needs"] = "Hakuna";
     }
     if (!empty($_POST["description"])) {
         $religion_data["description"] = clean_data($_POST["description"]);
-    } 
-    else{
+    } else {
         $religion_data["description"] = "Hakuna";
     }
 
@@ -315,7 +312,8 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
         if ($result) {
             unset($_SESSION["religion_errors"]);
             unset($_SESSION["religion_data"]);
-            setcookie("user_id", "", time() - 60);
+            // Unset user id cookie
+            // setcookie("user_id", "", time() - 60);
             header("Location: family_details.php");
             exit();
         }
@@ -357,7 +355,6 @@ function registerUser($userdata)
 
         // Register employment
         $user->registerEmployement($user_id, $userdata);
-        
     }
 }
 

@@ -84,6 +84,9 @@ const familyPage = () => {
             if (result !== false) {
                 document.querySelector("#parent_name").value = result.fullname
                 document.querySelector("#parent_id").value = result.id
+
+                // Store parent id on localstorage
+                localStorage.setItem("parent_id", result.id )
                 document.querySelector("#parent_photo").src = result.photo
 
             }
@@ -117,6 +120,7 @@ const familyPage = () => {
             let result = await response.json();
 
             if (result.length > 0) {
+                console.log(result)
                 result.forEach(item => {
                     output += `
                 <tr>

@@ -1,9 +1,17 @@
 <?php include "templates/header.php"; ?>
 <?php
+// If user is not logged in return to login page - For operator of the page
+if (!isset($_SESSION['isLogged'])) {
+    header("Location: index.php");
+    die();
+}
 
+
+// If user cookie is set set it as user id and will use it to fetch user info
 if (isset($_COOKIE["user_id"])) {
     $user_id = $_COOKIE["user_id"];
 } else {
+    // // if your cookie is not set return to the reg form
     // header("Location: personal_details.php");
     // die();
 }
@@ -27,7 +35,7 @@ if (isset($_COOKIE["user_id"])) {
                     <a href="family_details.php"><i class="las la-user-friends la-lg"></i> Taarifa za Watoto</a>
                 </li>
                 <li>
-                    <a href="index.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
+                    <a href="logout.php"><i class="las la-sign-out-alt la-lg"></i> Toka</a>
                 </li>
             </ul>
         </nav>
@@ -180,7 +188,7 @@ if (isset($_COOKIE["user_id"])) {
                     <input type="hidden" name="action" value="register_religion">
                     <input type="hidden" name="user_id" id="user_id" value='<?php if (isset($user_id)) echo $user_id; ?>'>
                     <button type="submit" class="submit-btn" name="submit" id="submit-btn">
-                        <i class="las la-save la-lg"></i> Hifadhi
+                        <i class="las la-save la-lg"></i> Endelea
                     </button>
                 </div>
             </div>
