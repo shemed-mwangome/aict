@@ -40,7 +40,7 @@ date_default_timezone_set("Africa/Dar_es_Salaam");
                 <nav class="navbar">
                     <ul>
                         <li>
-                            <a href="dashboard.php"><i class="las la-home la-lg" class="current"></i> Dashboard</a>
+                            <a href="dashboard.php"><i class="las la-home la-lg"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="personal_details.php"><i class="las la-pen la-lg"></i> Usajili</a>
@@ -55,6 +55,9 @@ date_default_timezone_set("Africa/Dar_es_Salaam");
                 </nav>
             </div>
             <div class="main-area">
+                <div class="container border border-top">
+                    Report
+                </div>
 
             </div>
         </main>

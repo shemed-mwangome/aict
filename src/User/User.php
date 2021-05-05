@@ -37,13 +37,7 @@ class User
         $this->db->bind(':id', $user_id);
         return $this->db->single();
     }
-    public function fetchSection()
-    {
-        $sql = "SELECT * FROM section;";
-        $this->db->query($sql);
-        return $this->db->resultSet();
-    }
-
+   
     public function registerUser($data)
     {
         $sql = "INSERT INTO particulars (
@@ -79,6 +73,7 @@ class User
         $this->db->query($sql);
         return $this->db->execute($values);
     }
+
     public function registerEmployement($id, $data)
     {
         $sql = "INSERT INTO employment (
@@ -178,5 +173,32 @@ class User
         $this->db->bind('reason_of_baptism', $data["reason"]);
         $this->db->bind('date_joined', $data["joined_date"]);
         return $this->db->execute();
+    }
+
+    public function fetchUserCount(){
+        $sql = "SELECT COUNT(id) as total_user FROM particulars";
+        $this->db->query($sql);
+        return $this->db->single();
+    }
+
+    
+    public function fetchAllUser(){
+        $sql = "SELECT *  FROM particulars";
+        $this->db->query($sql);
+        return $this->db->resultSet();
+    }
+
+    public function fetchSectionCount()
+    {
+        $sql = "SELECT COUNT(id) as total_section FROM section";
+        $this->db->query($sql);
+        return $this->db->single();
+    }
+    
+    public function fetchSection()
+    {
+        $sql = "SELECT * FROM section;";
+        $this->db->query($sql);
+        return $this->db->resultSet();
     }
 }

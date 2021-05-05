@@ -161,8 +161,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["a
 if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST["action"] == "fetch_children")) {
 
     $phone_no = clean_data($_POST["phone_no"]);
-
-    $user = new \App\User\User();
     getChildren($phone_no);
 }
 
@@ -320,7 +318,25 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && ($_POST["action"] == "fetch_user_count")) {
+    $row = fetchUserCount();
+    echo json_encode($row);
+}
 
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && ($_POST["action"] == "fetch_all_user")) {
+    $row = fetchAllUser();
+    echo json_encode($row);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && ($_POST["action"] == "fetch_section_count")) {
+    $row = fetchSectionCount();
+    echo json_encode($row);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && ($_POST["action"] == "fetch_all_section")) {
+    $row = fetchSection();
+    echo json_encode($row);
+}
 
 
 function clean_data($data)
@@ -378,8 +394,8 @@ function fetchSection()
 {
     $user = new \App\User\User();
 
-    $row = $user->fetchSection();
-    echo json_encode($row);
+    return $user->fetchSection();
+   
 }
 
 function getChildren($phone_no)
@@ -416,4 +432,22 @@ function registerReligionDetails($data)
 
     // insert religious details and return true if success
     return $user->registerReligion($data);
+}
+
+function fetchUserCount()
+{
+    $user = new \App\User\User();
+    return $user->fetchUserCount();
+}
+
+function fetchAllUser()
+{
+    $user = new \App\User\User();
+    return $user->fetchAllUser();
+}
+
+function fetchSectionCount()
+{
+    $user = new \App\User\User();
+    return $user->fetchSectionCount();
 }
