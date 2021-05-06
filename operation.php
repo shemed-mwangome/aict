@@ -155,7 +155,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["a
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["action"]) && $_POST["action"] == "fetch_section") {
 
-    fetchSection();
+    $section = fetchSection();
+    echo json_encode($section);
 }
 
 if (($_SERVER["REQUEST_METHOD"] == "POST") && isset($_POST["action"]) && ($_POST["action"] == "fetch_children")) {
@@ -395,7 +396,6 @@ function fetchSection()
     $user = new \App\User\User();
 
     return $user->fetchSection();
-   
 }
 
 function getChildren($phone_no)

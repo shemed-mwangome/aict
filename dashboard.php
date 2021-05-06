@@ -2,6 +2,13 @@
 session_start();
 date_default_timezone_set("Africa/Dar_es_Salaam");
 
+// If user is not logged in return to login page - For operator of the page
+if (!isset($_SESSION['isLogged'])) {
+    header("Location: index.php");
+    die();
+}
+
+
 ?>
 
 
