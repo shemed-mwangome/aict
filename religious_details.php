@@ -226,6 +226,7 @@ if (isset($_COOKIE["user_id"])) {
                             <button type="submit" class="submit-btn" name="submit" id="submit-btn">
                                 <i class="las la-save la-lg"></i> Endelea
                             </button>
+
                         </div>
                     </div>
 

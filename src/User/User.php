@@ -37,7 +37,7 @@ class User
         $this->db->bind(':id', $user_id);
         return $this->db->single();
     }
-   
+
     public function registerUser($data)
     {
         $sql = "INSERT INTO particulars (
@@ -175,14 +175,15 @@ class User
         return $this->db->execute();
     }
 
-    public function fetchUserCount(){
+    public function fetchUserCount()
+    {
         $sql = "SELECT COUNT(id) as total_user FROM particulars";
         $this->db->query($sql);
         return $this->db->single();
     }
 
-    
-    public function fetchAllUser(){
+    public function fetchAllUser()
+    {
         $sql = "SELECT *  FROM particulars";
         $this->db->query($sql);
         return $this->db->resultSet();
@@ -194,7 +195,7 @@ class User
         $this->db->query($sql);
         return $this->db->single();
     }
-    
+
     public function fetchSection()
     {
         $sql = "SELECT * FROM section;";

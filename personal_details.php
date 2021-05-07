@@ -288,6 +288,36 @@ if (!isset($_SESSION['isLogged'])) {
                 yearRange: "1900:c"
             }).val();
         });
+
+        const maritalStatus = document.querySelector("#marital_status")
+
+
+        const fetchMaritalStatus = async (e) => {
+            const url = 'operation.php'
+            const data = new URLSearchParams();
+            data.append('action', 'fetch_marital_status');
+
+            let options = {
+                method: 'POST',
+                body: data
+            }
+
+
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+
+                if (result) {
+                    console.log(result);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        
+
+        fetchMaritalStatus()
     </script>
 </body>
 

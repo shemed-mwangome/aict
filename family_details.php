@@ -158,6 +158,10 @@ if (isset($_COOKIE["user_id"])) {
                             <button type="submit" class="submit-btn" name="family_submit" id="submit-btn" value="Submit">
                                 <i class="las la-save la-lg"></i> Hifadhi
                             </button>
+                            <br>
+                            <a href="dashboard.php" class="btn btn-danger text-uppercase" id="submit-btn">
+                                <i class="las la-save la-lg"></i> Kamilisha
+                            </a>
                         </div>
 
                     </div>

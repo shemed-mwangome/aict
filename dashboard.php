@@ -67,7 +67,7 @@ if (!isset($_SESSION['isLogged'])) {
                         <h6 class="text-dark pl-3">Welcome <span>Operator</span> </h6>
                     </div>
                     <div class="row">
-                        <div class="col-md-3 total-users">
+                        <div class="col total-users">
                             <div class="card bg-success">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
@@ -85,7 +85,7 @@ if (!isset($_SESSION['isLogged'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 total-section">
+                        <div class="col total-section">
                             <div class="card bg-primary">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
@@ -103,7 +103,7 @@ if (!isset($_SESSION['isLogged'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 total-section">
+                        <div class="col total-section">
                             <div class="card bg-danger">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
@@ -122,6 +122,7 @@ if (!isset($_SESSION['isLogged'])) {
                             </div>
                         </div>
 
+                        <!-- 
                         <div class="col-md-3 total-section">
                             <div class="card bg-dark">
                                 <div class="card-body">
@@ -139,7 +140,7 @@ if (!isset($_SESSION['isLogged'])) {
                                     <a href="#" rel="noopener noreferrer" class="card-link text-white view-all">Angalia Wote <i class="las la-chevron-right"></i></a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                     <div class="row  mt-4 ">
@@ -147,7 +148,7 @@ if (!isset($_SESSION['isLogged'])) {
                             <button class="btn btn-danger close-table" style="display: none;">Funga</button>
                         </div>
                     </div>
-                    <div class="row  ">
+                    <div class="row">
                         <div class="col-md-12 table-view-all ">
 
                         </div>
@@ -242,11 +243,11 @@ if (!isset($_SESSION['isLogged'])) {
                     const response = await fetch(url, options);
                     const result = await response.json();
 
-                    if (result) {
+                    if (result.length > 0) {
                         console.log(result);
                         closeTableBtn.style.display = 'block';
                         let out = `
-                            <table class="table table-striped table-bordered mt-4">
+                            <table class="table table-striped table-bordered mt-2">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>Jina</th>
@@ -264,7 +265,7 @@ if (!isset($_SESSION['isLogged'])) {
                             <tr>
                                 <td>${user.fullname}</td>
                                 <td>${user.gender}</td>
-                                <td>${user.date_of_birth}</td>
+                            <td>${user.date_of_birth}</td>
                                 <td>${user.address}</td>
                                 <td>${user.phone_no}</td>
                             </tr>`;
@@ -272,6 +273,13 @@ if (!isset($_SESSION['isLogged'])) {
                         out += `</table`;
                         tableviewAll.innerHTML = out;
 
+                    } else {
+                        let out = `<div  class="alert alert-info alert-dismissible text-center mt-2">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <h3>Hakuna muumini aliyesajiliwa</h3>
+                                    </div>`;
+                        tableviewAll.innerHTML = out;
+                            
                     }
                 } catch (error) {
                     console.log(error);
@@ -302,7 +310,7 @@ if (!isset($_SESSION['isLogged'])) {
                         console.log(result);
                         closeTableBtn.style.display = 'block';
                         let out = `
-                            <table class="table table-striped table-bordered mt-4">
+                            <table class="table table-striped table-bordered mt-2">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>Na</th>
