@@ -30,12 +30,12 @@ if (isset($_COOKIE["user_id"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AFRICAN INLAND CHURCH TANZANIA | DAYOSISI YA PWANI</title>
-    <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../resources/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="../resources/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="resources/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
 </head>
 
 <body>
@@ -197,11 +197,11 @@ if (isset($_COOKIE["user_id"])) {
 
         </main>
     </div>
-    <script src="../resources/jquery/jquery.js"></script>
-    <script src="../resources/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../resources/popper/popper.js"></script>
-    <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../scripts/main.js"></script>
+    <script src="resources/jquery/jquery.js"></script>
+    <script src="resources/jquery-ui/jquery-ui.min.js"></script>
+    <script src="resources/popper/popper.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+    <script src="scripts/main.js"></script>
     <!-- Custom scripts -->
     <script>
 
