@@ -240,7 +240,6 @@ if (isset($_COOKIE["user_id"])) {
     <script src="resources/jquery-ui/jquery-ui.min.js"></script>
     <script src="resources/popper/popper.js"></script>
     <script src="resources/bootstrap/js/bootstrap.min.js"></script>
-    <script src="scripts/main.js"></script>
     <script>
         $(document).ready(function() {
             $(".date-input").datepicker({

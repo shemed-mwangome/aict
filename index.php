@@ -53,7 +53,10 @@ date_default_timezone_set("Africa/Dar_es_Salaam");
             </form>
         </div>
     </div>
-    <?php include "templates/scripts.php"; ?>
+    <script src="resources/jquery/jquery.js"></script>
+    <script src="resources/jquery-ui/jquery-ui.min.js"></script>
+    <script src="resources/popper/popper.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
     <!-- Custom Scripts -->
 
     <script>
@@ -92,7 +95,6 @@ date_default_timezone_set("Africa/Dar_es_Salaam");
                 .then(data => {
                     displayLoader();
                     let output = ""
-                    console.table(typeof data)
                     console.log(data)
                     if ('errors' in data) {
                         output += `

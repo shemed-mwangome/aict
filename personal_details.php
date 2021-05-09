@@ -278,18 +278,58 @@ if (!isset($_SESSION['isLogged'])) {
     <script src="resources/jquery-ui/jquery-ui.min.js"></script>
     <script src="resources/popper/popper.js"></script>
     <script src="resources/bootstrap/js/bootstrap.min.js"></script>
-    <script src="scripts/main.js"></script>
     <script>
-        $(document).ready(function() {
-            $(".date-input").datepicker({
-                dateFormat: "yy-mm-dd",
-                changeMonth: true,
-                changeYear: true,
-                yearRange: "1900:c"
-            }).val();
-        });
-
         const maritalStatus = document.querySelector("#marital_status")
+        let formData;
+
+        const submitForm = document.getElementById("personal__info__form")
+        const imageSelectorBtn = document.getElementById('user-photo-btn')
+        const image__input = document.getElementById('photo__input')
+        const user__image = document.getElementById('user__image')
+        const form_controls = document.querySelectorAll(".form-control");
+
+
+
+        const removeError = (e) => {
+            let span = e.target.nextElementSibling
+            span.style.display = "none";
+        }
+
+        const submitData = async (e) => {
+            e.preventDefault()
+
+            formData = new FormData(submitForm)
+
+            const response = await fetch("operation.php", {
+                method: "POST",
+                body: formData
+            })
+
+            const result = await response.json();
+            console.log(result);
+
+        }
+
+        const showThumbnail = (e) => {
+            //Show thumbnails
+            let file = image__input.files[0]
+            let reader = new FileReader()
+            reader.onload = (e) => {
+                user__image.src = e.target.result
+
+            }
+            reader.readAsDataURL(file)
+
+        }
+
+        const selectFile = (e) => {
+            e.preventDefault()
+            image__input.click()
+        }
+
+
+
+
 
 
         const fetchMaritalStatus = async (e) => {
@@ -305,7 +345,7 @@ if (!isset($_SESSION['isLogged'])) {
 
             try {
                 const response = await fetch(url, options);
-                const result = await response.json();
+                const result = await response.text();
 
                 if (result) {
                     console.log(result);
@@ -315,9 +355,20 @@ if (!isset($_SESSION['isLogged'])) {
             }
         }
 
-        
+        $(document).ready(function() {
+            $(".date-input").datepicker({
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1900:c"
+            }).val();
+        });
+
 
         fetchMaritalStatus()
+        imageSelectorBtn.addEventListener('click', selectFile, false)
+        image__input.addEventListener('change', showThumbnail, false)
+        form_controls.forEach(form_control => form_control.addEventListener('focus', removeError, false))
     </script>
 </body>
 

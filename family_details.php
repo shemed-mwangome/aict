@@ -43,7 +43,7 @@ if (isset($_COOKIE["user_id"])) {
         <header id="banner">
             <div class="container flex">
                 <div class="col-left">
-                    <img src="../images/logo.png" alt="Logo">
+                    <img src="images/logo.png" alt="Logo">
                 </div>
                 <div class="col-right">
                     <h1 class="main-title">AFRICAN INLAND CHURCH TANZANIA - DAYOSISI YA PWANI</h1>
@@ -201,12 +201,104 @@ if (isset($_COOKIE["user_id"])) {
     <script src="resources/jquery-ui/jquery-ui.min.js"></script>
     <script src="resources/popper/popper.js"></script>
     <script src="resources/bootstrap/js/bootstrap.min.js"></script>
-    <script src="scripts/main.js"></script>
     <!-- Custom scripts -->
     <script>
+        const phone_no = document.querySelector("#phone_no");
+        const form_input = document.querySelectorAll(".form-control");
+
+        const searchUser = async (e) => {
+            let num = e.target.value
+
+            let url = "operation.php"
+            let data = new URLSearchParams();
+            data.append("phone_no", num)
+            data.append("action", "search_user")
+            let options = {
+                method: "POST",
+                body: data
+            }
+
+            try {
+                let response = await fetch(url, options)
+
+                let result = await response.json();
+                if (result !== false) {
+                    document.querySelector("#parent_name").value = result.fullname
+                    document.querySelector("#parent_id").value = result.id
+
+                    // Store parent id on localstorage
+                    localStorage.setItem("parent_id", result.id)
+                    document.querySelector("#parent_photo").src = result.photo
+
+                } else {
+                    document.querySelector("#parent_name").value = ""
+                    document.querySelector("#parent_id").value = ""
+                    document.querySelector("#parent_id").value = "";
+                }
+
+            } catch (err) {
+                console.log(err);
+                console.log("No such user");
+            }
+        }
+
+        const fetchChildren = async (e) => {
+            let num = e.target.value
+            let output = "";
+
+            let url = "operation.php"
+            let data = new URLSearchParams();
+            data.append("action", "fetch_children")
+            data.append("phone_no", num)
+            let options = {
+                method: "POST",
+                body: data
+            }
+            try {
+                let response = await fetch(url, options)
+                let result = await response.json();
+
+                if (result.length > 0) {
+                    console.log(result)
+                    result.forEach(item => {
+                        output += `
+                <tr>
+                    <td>${item.fullname}</td>
+                    <td>${item.gender}</td>
+                    <td>${item.age}</td>
+                    <td>${item.is_staying_home}</td>
+                    <td class="action-item">
+                        <a href="#" title="Edit" class="action"><i class="las la-pen la-lg" ></i></a>
+                        <a href="#" title="Delete" class="action"><i class="las la-trash la-lg"></i></a>
+                    </td>
+                </tr>
+            `
+                    });
+
+                } else {
+                    output += `
+                    <tr id="no-data">
+                            <td colspan="5">
+                                <h1>Hakuna Taarifa</h1>
+                            </td>
+                    </tr>`;
+                }
+
+                document.querySelector("#display-data").innerHTML = output;
+            } catch (err) {
+                output += `
+                    <tr id="no-data">
+                        <td colspan="5">
+                            <h1>Hakuna Taarifa</h1>
+                        </td>
+                    </tr>`;
+                document.querySelector("#display-data").innerHTML = output;
+            }
+        }
 
 
-
+        phone_no.addEventListener("keyup", searchUser, false);
+        phone_no.addEventListener("input", fetchChildren, false);
     </script>
 </body>
 
