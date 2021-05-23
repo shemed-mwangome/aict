@@ -1,13 +1,15 @@
--- MySQL dump 10.13  Distrib 8.0.23, for Linux (x86_64)
+CREATE DATABASE  IF NOT EXISTS `aict` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `aict`;
+-- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: localhost    Database: aict
 -- ------------------------------------------------------
--- Server version	8.0.23-0ubuntu0.20.04.1
+-- Server version	8.0.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -15,10 +17,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-DROP DATABASE IF EXISTS `aict`;
-
-CREATE DATABASE `aict`;
-USE `aict`; 
 --
 -- Table structure for table `children`
 --
@@ -36,7 +34,7 @@ CREATE TABLE `children` (
   PRIMARY KEY (`id`),
   KEY `children_ibfk_1` (`particulars_id`),
   CONSTRAINT `children_ibfk_1` FOREIGN KEY (`particulars_id`) REFERENCES `particulars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +43,7 @@ CREATE TABLE `children` (
 
 LOCK TABLES `children` WRITE;
 /*!40000 ALTER TABLE `children` DISABLE KEYS */;
-INSERT INTO `children` VALUES (63,29,'Daniel Kiba',9,'me','ndio');
+INSERT INTO `children` VALUES (63,29,'Daniel Kiba',9,'me','ndio'),(64,30,'Daniel Peter',10,'me','ndio');
 /*!40000 ALTER TABLE `children` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +63,7 @@ CREATE TABLE `education` (
   UNIQUE KEY `particulars_id` (`particulars_id`),
   KEY `education_ibfk_1` (`particulars_id`),
   CONSTRAINT `education_ibfk_1` FOREIGN KEY (`particulars_id`) REFERENCES `particulars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +72,7 @@ CREATE TABLE `education` (
 
 LOCK TABLES `education` WRITE;
 /*!40000 ALTER TABLE `education` DISABLE KEYS */;
-INSERT INTO `education` VALUES (63,17,'ndio','hapana');
+INSERT INTO `education` VALUES (63,17,'ndio','hapana'),(64,18,'hapana','ndio');
 /*!40000 ALTER TABLE `education` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +91,7 @@ CREATE TABLE `employment` (
   PRIMARY KEY (`id`),
   KEY `employment_ibfk_1` (`particulars_id`),
   CONSTRAINT `employment_ibfk_1` FOREIGN KEY (`particulars_id`) REFERENCES `particulars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +100,7 @@ CREATE TABLE `employment` (
 
 LOCK TABLES `employment` WRITE;
 /*!40000 ALTER TABLE `employment` DISABLE KEYS */;
-INSERT INTO `employment` VALUES (63,18,'Azania Bank','Mhasibu');
+INSERT INTO `employment` VALUES (63,18,'Azania Bank','Mhasibu'),(64,19,'Azam Media','Mhasibu');
 /*!40000 ALTER TABLE `employment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +121,7 @@ CREATE TABLE `leadership` (
   UNIQUE KEY `particulars_id` (`particulars_id`),
   KEY `leadership_ibfk_1` (`particulars_id`),
   CONSTRAINT `leadership_ibfk_1` FOREIGN KEY (`particulars_id`) REFERENCES `particulars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +130,7 @@ CREATE TABLE `leadership` (
 
 LOCK TABLES `leadership` WRITE;
 /*!40000 ALTER TABLE `leadership` DISABLE KEYS */;
-INSERT INTO `leadership` VALUES (63,11,'Hakuna','Hakuna','Hakuna');
+INSERT INTO `leadership` VALUES (63,11,'Hakuna','Hakuna','Hakuna'),(64,12,'Muongoza Kwaya','Hakuna','Hakuna');
 /*!40000 ALTER TABLE `leadership` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,7 +178,7 @@ CREATE TABLE `particulars` (
   `date_of_registration` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `phone_no` (`phone_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +187,7 @@ CREATE TABLE `particulars` (
 
 LOCK TABLES `particulars` WRITE;
 /*!40000 ALTER TABLE `particulars` DISABLE KEYS */;
-INSERT INTO `particulars` VALUES (63,'Christina Kusaga','ke','1984-04-11','458 Dar es Salaam','0625000111','tinakusaga@azania.co.tz','uploads/20210507_032405.jpg','married','Kusaga Wilfred','2021-05-07 15:24:05');
+INSERT INTO `particulars` VALUES (63,'Christina Kusaga','ke','1984-04-11','458 Dar es Salaam','0625000111','tinakusaga@azania.co.tz','uploads/20210507_032405.jpg','married','Kusaga Wilfred','2021-05-07 15:24:05'),(64,'Devin Mosha','ke','1981-03-18','78 Tukuyu','0625100200','devinmosha@hotmail.co.uk','uploads/20210510_123304.jpg','married','Kenneth Peter','2021-05-09 14:33:04');
 /*!40000 ALTER TABLE `particulars` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,7 +235,7 @@ CREATE TABLE `religious_details` (
   PRIMARY KEY (`id`),
   KEY `religious_details_ibfk_1` (`particulars_id`),
   CONSTRAINT `religious_details_ibfk_1` FOREIGN KEY (`particulars_id`) REFERENCES `particulars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,7 +244,7 @@ CREATE TABLE `religious_details` (
 
 LOCK TABLES `religious_details` WRITE;
 /*!40000 ALTER TABLE `religious_details` DISABLE KEYS */;
-INSERT INTO `religious_details` VALUES (63,10,'2014-04-09','2007-02-09','Shinyanga','Kuhubiri','9','Yeye ni mwokozi wa maisha yangu amenitendea maajabu','2017-09-13');
+INSERT INTO `religious_details` VALUES (63,10,'2014-04-09','2007-02-09','Shinyanga','Kuhubiri','9','Yeye ni mwokozi wa maisha yangu amenitendea maajabu','2017-09-13'),(64,11,'2015-01-09','2010-04-16','Mji Mwema','Uimbaji','9','Yeye ni mwokozi wangu','2017-02-08');
 /*!40000 ALTER TABLE `religious_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -266,7 +264,7 @@ CREATE TABLE `residence` (
   PRIMARY KEY (`id`),
   KEY `residence_ibfk_1` (`particulars_id`),
   CONSTRAINT `residence_ibfk_1` FOREIGN KEY (`particulars_id`) REFERENCES `particulars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -275,7 +273,7 @@ CREATE TABLE `residence` (
 
 LOCK TABLES `residence` WRITE;
 /*!40000 ALTER TABLE `residence` DISABLE KEYS */;
-INSERT INTO `residence` VALUES (63,18,'Toangoma','Shuleni','10');
+INSERT INTO `residence` VALUES (63,18,'Toangoma','Shuleni','10'),(64,19,'Toangoma','Kwa Msisi','10');
 /*!40000 ALTER TABLE `residence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,7 +316,7 @@ CREATE TABLE `spouse` (
   PRIMARY KEY (`id`),
   KEY `partner_ibfk_1` (`particulars_id`),
   CONSTRAINT `spouse_ibfk_1` FOREIGN KEY (`particulars_id`) REFERENCES `particulars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,7 +325,7 @@ CREATE TABLE `spouse` (
 
 LOCK TABLES `spouse` WRITE;
 /*!40000 ALTER TABLE `spouse` DISABLE KEYS */;
-INSERT INTO `spouse` VALUES (63,19,'Raphael Daud','2013-06-04');
+INSERT INTO `spouse` VALUES (63,19,'Raphael Daud','2013-06-04'),(64,20,'Julius Kabwe','2008-05-14');
 /*!40000 ALTER TABLE `spouse` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,4 +370,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-09  6:42:05
+-- Dump completed on 2021-05-11 23:24:28
