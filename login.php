@@ -44,7 +44,8 @@ if (isset($_POST["action"]) && $_POST["action"] == "login") {
                 }
                 $success = true;
                 $_SESSION["isLogged"] = true;
-                $_SESSION['user'] = $page;
+                $_SESSION['user_page'] = $page;
+                $_SESSION['user_logged'] = $dbResult->fullname;
             } else {
                 $errors["password_error"] = "Umekosea neno siri la mtumiaji";
             }
@@ -58,7 +59,8 @@ if (isset($_POST["action"]) && $_POST["action"] == "login") {
         } else {
             $success = array(
                 "status" => true,
-                "page" => $page
+                "page" => $page,
+        
             );
             $result["success"] = $success;
             echo json_encode($result);

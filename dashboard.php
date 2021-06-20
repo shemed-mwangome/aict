@@ -15,7 +15,7 @@ if (!isset($_SESSION['isLogged'])) {
 <?php include "templates/header.php"; ?>
 <main class="main-content">
     <div class="sidebar">
-        <p class="welcome-note">Welcome, <span>Seleman</span></p>
+
         <nav class="navbar">
             <ul>
                 <li class="current">
@@ -36,7 +36,13 @@ if (!isset($_SESSION['isLogged'])) {
     <div class="main-area">
         <div class="container-fluid ">
             <div class="row">
-                <h6 class="text-dark pl-3">Welcome <span>Operator</span> </h6>
+                <h6 class="text-dark pl-3">Welcome
+                    <?php if (isset($_SESSION["user_logged"])) : ?>
+                        <span>
+                            <?php echo $_SESSION["user_logged"]; ?>
+                        </span>
+                    <?php endif; ?>
+                </h6>
             </div>
             <div class="row">
                 <div class="col total-users">
