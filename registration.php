@@ -1,4 +1,4 @@
-<?php include "includes/header.php"; ?>
+<?php include "templates/header.php"; ?>
 <main class="main-content">
     <div class="sidebar">
         <p class="welcome-note">Welcome, <span>Seleman</span></p>
@@ -25,4 +25,4 @@
     </div>
     <div class="main-area">
 
-        <?php include "includes/footer.php"; ?>
+        <?php include "templates/footer.php"; ?>
