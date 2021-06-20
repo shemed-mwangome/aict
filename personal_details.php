@@ -15,7 +15,13 @@ if (!isset($_SESSION['isLogged'])) {
 
 <main class="main-content">
     <div class="sidebar">
-        <p class="welcome-note">Welcome, <span>Seleman</span></p>
+        <p class="welcome-note">Welcome,
+                <?php if (isset($_SESSION["user_logged"])) : ?>
+                    <span>
+                        <?php echo $_SESSION["user_logged"]; ?>
+                    </span>
+                <?php endif; ?>
+            </p>
         <nav class="navbar">
             <ul>
                 <li>

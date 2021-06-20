@@ -15,7 +15,13 @@ if (!isset($_SESSION['isLogged'])) {
 <?php include "templates/header.php"; ?>
 <main class="main-content">
     <div class="sidebar">
-
+        <p class="welcome-note">Welcome,
+            <?php if (isset($_SESSION["user_logged"])) : ?>
+                <span>
+                    <?php echo $_SESSION["user_logged"]; ?>
+                </span>
+            <?php endif; ?>
+        </p>
         <nav class="navbar">
             <ul>
                 <li class="current">
@@ -35,15 +41,6 @@ if (!isset($_SESSION['isLogged'])) {
     </div>
     <div class="main-area">
         <div class="container-fluid ">
-            <div class="row">
-                <h6 class="text-dark pl-3">Welcome
-                    <?php if (isset($_SESSION["user_logged"])) : ?>
-                        <span>
-                            <?php echo $_SESSION["user_logged"]; ?>
-                        </span>
-                    <?php endif; ?>
-                </h6>
-            </div>
             <div class="row">
                 <div class="col total-users">
                     <div class="card bg-success">
