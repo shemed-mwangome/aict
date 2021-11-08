@@ -2,6 +2,7 @@
 
 namespace App\User;
 
+use Exception;
 use lastInsertId;
 
 class User
@@ -10,7 +11,12 @@ class User
 
     public function __construct()
     {
-        $this->db = new \App\DataBase();
+        try{
+            $this->db = new \App\DataBase();
+        }
+        catch(Exception $e){
+            return $e->getMessage();
+        }
     }
 
 

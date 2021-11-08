@@ -29,7 +29,7 @@ date_default_timezone_set("Africa/Dar_es_Salaam");
                     <img src="images/logo.png" alt="Logo">
                 </div>
                 <div class="col-right">
-                    <h1 class="main-title">AFRICAN INLAND CHURCH TANZANIA - DAYOSISI YA PWANI</h1>
+                    <h1 class="main-title">AFRICAN INLAND CHURCH TANZANIA - PASTORETI YA KONGOWE</h1>
                     <h2 class="sub-title">MFUMO WA SENSA YA WAUMINI</h2>
                 </div>
             </div>

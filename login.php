@@ -60,7 +60,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "login") {
             $success = array(
                 "status" => true,
                 "page" => $page,
-        
+
             );
             $result["success"] = $success;
             echo json_encode($result);

@@ -7,6 +7,6 @@
     <title>Administrator</title>
 </head>
 <body>
-    Hello Admin
+    Hello Test samdin
 </body>
 </html>
