@@ -1,8 +1,3 @@
-<?php
-session_start();
-date_default_timezone_set("Africa/Dar_es_Salaam");
-
-?>
 
 <?php require "templates/header.php"; ?>
 <div class="login " data-page__title="login">
